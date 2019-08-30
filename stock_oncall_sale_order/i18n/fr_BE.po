@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_oncall_sale_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20190619\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-03 07:57+0000\n"
+"PO-Revision-Date: 2019-08-27 10:44+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr_BE\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model.fields,field_description:stock_oncall_sale_order.field_res_partner__oncall_product_count
+#: model:ir.model.fields,field_description:stock_oncall_sale_order.field_res_users__oncall_product_count
+msgid "# Products On-Call"
+msgstr "# De produits en sur-appels"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model,name:stock_oncall_sale_order.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model.fields,field_description:stock_oncall_sale_order.field_stock_location_route__create_specific_location_for_customer
+msgid "Create a specific stock location for customer when used in a Sales Order Line"
+msgstr "Créer un emplacement de stock pour le client lorsqu'elle est utilisé dans une ligne de vente"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model,name:stock_oncall_sale_order.model_stock_location_route
+msgid "Inventory Routes"
+msgstr "Routes logistiques"
+
+#. module: stock_oncall_sale_order
+#: model:stock.location.route,name:stock_oncall_sale_order.route_warehouse0_oncall
+msgid "On-Call"
+msgstr "Sur-Appel"
+
+#. module: stock_oncall_sale_order
+#: model:ir.actions.act_window,name:stock_oncall_sale_order.partner_oncall_location_open_quants
+msgid "On-Call Current Stock"
+msgstr "Stock actuel du Sur-Appel"
+
+#. module: stock_oncall_sale_order
+#: model_terms:ir.ui.view,arch_db:stock_oncall_sale_order.view_partner_form_stock_location_smart_button
+msgid "Products On-Call"
+msgstr "Sur-Appel"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model,name:stock_oncall_sale_order.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: stock_oncall_sale_order
+#: model:ir.model.fields,field_description:stock_oncall_sale_order.field_res_partner__use_oncall
+#: model:ir.model.fields,field_description:stock_oncall_sale_order.field_res_users__use_oncall
+msgid "Use Oncall"
+msgstr "Utiliser le Sur-Appel"

@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+    <record id="view_order_form" model ="ir.ui.view">
+    <field name="name">sale.order.form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <field name="partner_shipping_id" position="after">
+          <field name="date_diponibility"/>
+      </field>
+
+      <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+            <field name="date_diponibility"/>
+      </xpath>
+
+      <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/group/group[2]/div" position="after">
+          <label for="date_diponibility" string="Date de mise à disposition"/>
+          <div>
+            <field name="date_diponibility"/>
+          </div>
+      </xpath>
+
+    </field>
+    </record>
+  </data>
+</odoo>
