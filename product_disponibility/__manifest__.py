@@ -19,13 +19,16 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'sale', 'stock'],
+    'depends': ['base', 'sale', 'website_sale', 'purchase', 'stock', 'product'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/product_template.xml',
         'views/sale_views.xml',
+        'views/purchase_views.xml',
+        'views/stock_picking_views.xml',
+        'views/update_mad_date_action.xml'
         #'views/scheduler.xml',
     ],
     # only loaded in demonstration mode

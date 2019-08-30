@@ -1,26 +1,72 @@
 <odoo>
-  <data>
-    <record id="view_order_form" model ="ir.ui.view">
-    <field name="name">sale.order.form</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form" />
-    <field name="arch" type="xml">
-      <field name="partner_shipping_id" position="after">
-          <field name="date_diponibility"/>
-      </field>
+    <data>
+        <record id="view_order_form" model ="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_shipping_id" position="after">
+                <field name="date_disponibility" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+            </field>
 
-      <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
-            <field name="date_diponibility"/>
-      </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="date_disponibility" readonly="False"/>
+            </xpath>
 
-      <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/group/group[2]/div" position="after">
-          <label for="date_diponibility" string="Date de mise à disposition"/>
-          <div>
-            <field name="date_diponibility"/>
-          </div>
-      </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="before">
+                <field name="product_image" widget="image" class="oe_avatar"/>
+            </xpath>
 
-    </field>
-    </record>
-  </data>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/group/group[2]/div" position="after">
+                <label for="date_disponibility" string="Date de mise à disposition Estimée"/>
+                <div>
+                    <field name="date_disponibility" readonly="False"/>
+                </div>
+
+                <div>
+                    <field name="product_image" widget="image" />
+                </div>
+            </xpath>
+
+        </field>
+        </record>
+
+        <record id="view_order_tree" model ="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="commitment_date" position="replace">
+                <field name="commitment_date" invisible="1"/>
+            </field>
+
+            <field name="expected_date" position="replace">
+                <field name="expected_date" invisible="1"/>
+            </field>
+
+            <field name="confirmation_date" position="after">
+                <field name="date_disponibility"/>
+            </field>
+        </field>
+        </record>
+
+        <record id="view_quotation_tree" model ="ir.ui.view">
+        <field name="name">sale.quot.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="commitment_date" position="replace">
+                <field name="commitment_date" invisible="1"/>
+            </field>
+
+            <field name="expected_date" position="replace">
+                <field name="expected_date" invisible="1"/>
+            </field>
+
+            <field name="date_order" position="after">
+                <field name="date_disponibility"/>
+            </field>
+        </field>
+        </record>
+    </data>
 </odoo>
