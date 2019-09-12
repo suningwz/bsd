@@ -8,24 +8,26 @@
             <xpath expr="//group[@name='container_row_stock']" position="attributes">
                 <attribute name="groups"></attribute>
             </xpath>
+            <xpath expr="//group[@name='warehouse']" position="inside">
+                <field name="oncall_location_id" />
+            </xpath>
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="partner_oncall_location_open_quants"> <!-- Used partners location -->
-        <field name="context">{'search_default_productgroup': 1}</field>
-        <field name="domain">[('location_id', 'child_of', stock_location)]</field>
-        <field name="name">On-Call Current Stock</field>
-        <field name="res_model">stock.quant</field>
+    <record model="ir.actions.act_window" id="partner_oncall_open_orders">
+        <field name="context">{}</field>
+        <field name="domain">[('partner_id', 'child_of', partner_id)]</field>
+        <field name="name">On-Call Orders</field>
+        <field name="res_model">stock.oncall.order</field>
     </record>
 
-    <record model="ir.ui.view" id="view_partner_form_stock_location_smart_button">
-        <field name="name">view_partner_form_stock_location_smart_button</field>
+    <record model="ir.ui.view" id="view_partner_oncall_orders">
+        <field name="name">view_partner_oncall_orders</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <field name="use_oncall" invisible="True" />
-                <button class="oe_stat_button" type="action" attrs="{'invisible': [('use_oncall', '=', False), ('customer', '=', True)]}" name="%(partner_oncall_location_open_quants)d" icon="fa-building" groups="sales_team.group_sale_salesman" context="{'stock_location': property_stock_customer}">
+                <button class="oe_stat_button" type="action" attrs="{'invisible': [('oncall_location_id', '=', False)]}" name="%(partner_oncall_open_orders)d" icon="fa-building" groups="sales_team.group_sale_salesman" context="{'partner_id': id}">
                     <field string="Products On-Call" name="oncall_product_count" widget="statinfo"/>
                 </button>
             </xpath>
