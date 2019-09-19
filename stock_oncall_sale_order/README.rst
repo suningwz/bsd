@@ -62,7 +62,11 @@ Mise en production : 1h
 
 Use cases :
 - réserver la quantité vendue en On-Call et qu'elle ne soit plus dispo pour un autre
-- s
+- stock réel : stock réel - commandes en sur-appel
+- organiser les picking out depuis les stock on-call
+- articles qui sont dans les on-call ne sont pas disponibles
+- faire un flag sur les picking lists venant du sur-appel
+- valorisation de l'inventaire : BSD + par clients
 
 
 Installation notes

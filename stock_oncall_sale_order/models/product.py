@@ -3,11 +3,10 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class Partner(models.Model):
-    _inherit = 'res.partner'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
-    oncall_location_id = fields.Many2one('stock.location', string="Oncall Main Stock Location")
-    oncall_stock_ids = fields.One2many('stock.oncall.stock', 'partner_id', string="On-Call Stock")
+    oncall_stock_ids = fields.One2many('stock.oncall.stock', 'product_tmpl_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
 
     @api.one
@@ -16,3 +15,4 @@ class Partner(models.Model):
         for stock in self.oncall_stock_ids:
             total += stock.qty_to_deliver
         self.oncall_product_count = total
+
