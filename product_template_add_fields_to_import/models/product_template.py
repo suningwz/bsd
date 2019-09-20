@@ -59,5 +59,6 @@ class ProductTemplate(models.Model):
     x_studio_pro_ach_price = fields.Char("PRIX PRO ACH")
     x_studio_deb_pro_ac = fields.Char("DEB PRO AC")
     x_studio_fin_pro_ac = fields.Char("FIN PRO AC")
+    x_studio_categ_id = fields.Char("Ex Old NUMERO 2")
 
 

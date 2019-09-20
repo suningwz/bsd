@@ -32,6 +32,7 @@
                             <field name="x_studio_pa_shilling"/>
                             <field name="x_studio_pa_sterling"/>
                             <field name="x_studio_fs_suisse"/>
+                            <field name="x_studio_categ_id"/>
                         </group>
                         <group>
                             <field name="x_studio_pr_eur"/>
