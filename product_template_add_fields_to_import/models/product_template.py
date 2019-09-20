@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     x_studio_purchase_tax = fields.Integer("TAXE ACHAT")
+    x_studio_supplier_reference = fields.Char("Supplier Reference")
     x_studio_sale_tax = fields.Integer("TAXE VENTE")
     x_studio_supplier_name = fields.Char("NOM FOURN")
     x_studio_sub_categ_id = fields.Char("NOM COLLECTION")

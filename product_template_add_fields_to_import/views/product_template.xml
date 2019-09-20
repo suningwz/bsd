@@ -35,6 +35,7 @@
                         </group>
                         <group>
                             <field name="x_studio_pr_eur"/>
+                            <field name="x_studio_supplier_reference"/>
                             <field name="x_studio_marge_benef"/>
                             <field name="x_studio_marge_box"/>
                             <field name="x_studio_marge_indu"/>
