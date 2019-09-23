@@ -61,5 +61,7 @@ class ProductTemplate(models.Model):
     x_studio_fin_pro_ac = fields.Char("FIN PRO AC")
     x_studio_categ_id = fields.Char("Ex Old NUMERO 2")
     x_studio_version = fields.Char("Saison")
+    x_studio_uom_id = fields.Char("UoM")
+    x_studio_uom_po_id = fields.Char("UoM Po")
 
 
