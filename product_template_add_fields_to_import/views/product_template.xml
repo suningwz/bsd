@@ -67,6 +67,7 @@
                             <field name="x_studio_pro_ach_price"/>
                             <field name="x_studio_deb_pro_ac"/>
                             <field name="x_studio_fin_pro_ac"/>
+                            <field name="x_studio_commodity_code"/>
                         </group>
                     </group>
                 </page>
