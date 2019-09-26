@@ -20,6 +20,7 @@
         'views/res_partner_view.xml',
         'views/sale_order_view.xml',
         'views/oncall_order_view.xml',
+        'views/stock_location_view.xml',
 
         'data/stock_location_route.xml',
         'security/ir.model.access.csv',

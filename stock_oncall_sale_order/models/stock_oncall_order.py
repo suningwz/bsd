@@ -12,7 +12,7 @@ class StockOnCallOrder(models.Model):
     product_id = fields.Many2one('product.product', related='sale_order_line_id.product_id', string="Product")
     uom_id = fields.Many2one('uom.uom', related='sale_order_line_id.product_uom')
     qty_to_deliver = fields.Integer(string="Qty to deliver")
-
+    # TODO : ajouter un champ avec la quantité en stock chez BSD
 
     def name_get(self):
         res = []

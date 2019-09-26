@@ -60,6 +60,11 @@ Debug : 3h
 Mise en production : 1h
 
 
+Use cases :
+- réserver la quantité vendue en On-Call et qu'elle ne soit plus dispo pour un autre
+- s
+
+
 Installation notes
 ==================
 
