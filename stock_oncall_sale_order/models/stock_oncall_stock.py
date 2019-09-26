@@ -3,8 +3,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class StockOnCallOrder(models.Model):
-    _name = 'stock.oncall.order'
+class StockOnCallStock(models.Model):
+    _name = 'stock.oncall.stock'
 
     partner_id = fields.Many2one('res.partner', string="Partner")
     sale_order_line_id = fields.Many2one('sale.order.line', string="Sale Order Line")
@@ -16,6 +16,6 @@ class StockOnCallOrder(models.Model):
 
     def name_get(self):
         res = []
-        for order in self:
-            res.append((order.id, '{0} - {1} - {2} {3}'.format(order.sale_order_id.name, order.partner_id.name, order.qty_to_deliver, order.uom_id.name)))
+        for stock in self:
+            res.append((stock.id, '{0} - {1} - {2} {3}'.format(stock.sale_order_id.name, stock.partner_id.name, stock.qty_to_deliver, stock.uom_id.name)))
         return res

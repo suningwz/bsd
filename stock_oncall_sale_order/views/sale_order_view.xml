@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="ir.actions.act_window" id="sale_order_oncall_open_orders">
+    <record model="ir.actions.act_window" id="sale_order_oncall_stock">
         <field name="context">{}</field>
         <field name="domain">[('sale_order_id', '=', sale_order_id)]</field>
-        <field name="name">On-Call Orders</field>
-        <field name="res_model">stock.oncall.order</field>
+        <field name="name">On-Call Stock</field>
+        <field name="res_model">stock.oncall.stock</field>
     </record>
 
     <record model="ir.ui.view" id="view_order_form_oncall_orders">
@@ -13,11 +13,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoice_count', '=', 0)]}">
-                    <field name="invoice_count" widget="statinfo" string="Invoices"/>
-                </button>
-
-                <button class="oe_stat_button" type="action" attrs="{'invisible': [('oncall_product_count', '=', 0)]}" name="%(sale_order_oncall_open_orders)d" icon="fa-building" context="{'sale_order_id': id}">
+                <button class="oe_stat_button" type="action" attrs="{'invisible': [('oncall_product_count', '=', 0)]}" name="%(sale_order_oncall_stock)d" icon="fa-building" context="{'sale_order_id': id}">
                     <field string="Products On-Call" name="oncall_product_count" widget="statinfo"/>
                 </button>
             </xpath>
