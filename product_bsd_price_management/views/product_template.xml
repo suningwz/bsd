@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='general_information']" position="before">
                 <page string="BSD Sale Price" groups="sales_team.group_sale_salesman">
-                    <field name="sale_price_line_ids" mode="tree">
+                    <field name="sale_price_line_ids" context="{'default_product_id': active_id}" mode="tree">
                         <tree string="BSD Sale Prices">
                             <field name="unit_price"/>
                             <field name="price_uv"/>
@@ -16,9 +16,9 @@
                             <field name="qty_box"/>
                             <field name="price_pallet"/>
                             <field name="qty_pallet"/>
-                            <field name="price_indu"/>
                             <field name="qty_for_discount"/>
                             <field name="price_discount"/>
+                            <field name="price_indu"/>
                         </tree>
                     </field>
                 </page>

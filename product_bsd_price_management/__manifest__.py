@@ -12,6 +12,7 @@
     'version': '12.0.1.0',
 
     'depends': [
+        'product',
         'sale',
         'purchase'
     ],
@@ -21,6 +22,8 @@
 
         'security/ir.model.access.csv',
 
-        'views/product_template.xml'
+        'views/product_template.xml',
+        'views/uom_uom.xml',
+        'views/res_partner.xml',
     ],
 }

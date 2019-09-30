@@ -7,6 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class ProductSalePriceLine(models.Model):
     _name = "product.sale.price.line"
+    _description = "line containing all prices for one product"
 
     product_id = fields.Many2one('product.template', string="Product")
 
