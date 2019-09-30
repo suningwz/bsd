@@ -11,6 +11,7 @@ class ProductSalePriceLine(models.Model):
 
     product_id = fields.Many2one('product.template', string="Product")
 
+    sequence = fields.Integer()
     unit_price = fields.Float("Unit Price", compute="_compute_unit_price")
     price_uv = fields.Float("Price U.V.")
     qty_uv = fields.Integer("Qty U.V.", default=1)

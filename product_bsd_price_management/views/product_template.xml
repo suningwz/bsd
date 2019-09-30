@@ -9,6 +9,7 @@
                 <page string="BSD Sale Price" groups="sales_team.group_sale_salesman">
                     <field name="sale_price_line_ids" context="{'default_product_id': active_id}" mode="tree">
                         <tree string="BSD Sale Prices">
+                            <field name="sequence" widget="handle"/>
                             <field name="unit_price"/>
                             <field name="price_uv"/>
                             <field name="qty_uv"/>
