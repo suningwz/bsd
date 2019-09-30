@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_template_add_bsd_price_tab">
+        <field name="name">product_template_add_bsd_price_tab</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="before">
+                <page string="BSD Sale Price" groups="sales_team.group_sale_salesman">
+                    <field name="sale_price_line_ids" mode="tree">
+                        <tree string="BSD Sale Prices">
+                            <field name="unit_price"/>
+                            <field name="price_uv"/>
+                            <field name="qty_uv"/>
+                            <field name="price_box"/>
+                            <field name="qty_box"/>
+                            <field name="price_pallet"/>
+                            <field name="qty_pallet"/>
+                            <field name="price_indu"/>
+                            <field name="qty_for_discount"/>
+                            <field name="price_discount"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

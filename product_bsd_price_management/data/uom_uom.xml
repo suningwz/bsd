@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="uom.category" id="uom_category_bsd">
+        <field name="name">BSD</field>
+    </record>
+    <record model="uom.uom" id="uom_uv">
+        <field name="name">Sell Unit</field>
+        <field name="category_id" ref="product_bsd_price_management.uom_category_bsd"/>
+        <field name="uom_type">bigger</field>
+        <field name="ratio">1</field>
+        <field name="rounding">0,01</field>
+    </record>
+    <record model="uom.uom" id="uom_box">
+        <field name="name">Box</field>
+        <field name="category_id" ref="product_bsd_price_management.uom_category_bsd"/>
+        <field name="uom_type">bigger</field>
+        <field name="ratio">1</field>
+        <field name="rounding">0,01</field>
+    </record>
+    <record model="uom.uom" id="uom_pallet">
+        <field name="name">Pallet</field>
+        <field name="category_id" ref="product_bsd_price_management.uom_category_bsd"/>
+        <field name="uom_type">bigger</field>
+        <field name="ratio">1</field>
+        <field name="rounding">0,01</field>
+    </record>
+</odoo>
