@@ -36,6 +36,7 @@
                             <field name="x_studio_version"/>
                             <field name="x_studio_uom_id"/>
                             <field name="x_studio_uom_po_id"/>
+                            <field name="x_studio_pv_euro"/>
                         </group>
                         <group>
                             <field name="x_studio_pr_eur"/>
