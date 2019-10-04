@@ -28,6 +28,7 @@
     'data': [
         'data/product_category.xml',
 
-        'views/sale_order.xml'
+        'views/sale_order.xml',
+        'views/product_product.xml',
     ],
 }
