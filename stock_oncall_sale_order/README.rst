@@ -62,7 +62,9 @@ Mise en production : 1h
 
 Use cases :
 - réserver la quantité vendue en On-Call et qu'elle ne soit plus dispo pour un autre
+    - ok par la mécanique d'auto réservation
 - stock réel : stock réel - commandes en sur-appel
+    - ok avec le changement de quantité available
 - organiser les picking out depuis les stock on-call
 - articles qui sont dans les on-call ne sont pas disponibles
 - faire un flag sur les picking lists venant du sur-appel

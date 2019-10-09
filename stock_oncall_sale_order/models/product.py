@@ -1,4 +1,5 @@
 from odoo import models, fields, api
+from odoo.addons import decimal_precision as dp
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -8,6 +9,7 @@ class ProductTemplate(models.Model):
 
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'product_tmpl_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
+    qty_owned_available = fields.Float('Owned Qty On Hand', compute='_compute_quantities', digits=dp.get_precision('Product Unit of Measure'))
 
     @api.one
     def _compute_oncall_product_count(self):
@@ -19,7 +21,8 @@ class ProductTemplate(models.Model):
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
         for template in self:
-            template.qty_available = res[template.id]['qty_available'] - template.oncall_product_count
+            template.qty_available = res[template.id]['qty_available']
+            template.qty_owned_available = res[template.id]['qty_available'] - template.oncall_product_count
             template.virtual_available = res[template.id]['virtual_available']
             template.incoming_qty = res[template.id]['incoming_qty']
             template.outgoing_qty = res[template.id]['outgoing_qty']
@@ -30,6 +33,7 @@ class ProductProduct(models.Model):
 
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'product_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
+    qty_owned_available = fields.Float('Owned Qty On Hand', compute='_compute_quantities', digits=dp.get_precision('Product Unit of Measure'))
 
     @api.one
     def _compute_oncall_product_count(self):
@@ -43,7 +47,8 @@ class ProductProduct(models.Model):
     def _compute_quantities(self):
         res = self._compute_quantities_dict(self._context.get('lot_id'), self._context.get('owner_id'), self._context.get('package_id'), self._context.get('from_date'), self._context.get('to_date'))
         for product in self:
-            product.qty_available = res[product.id]['qty_available'] - product.oncall_product_count
+            product.qty_available = res[product.id]['qty_available']
+            product.qty_owned_available = res[product.id]['qty_available'] - product.oncall_product_count
             product.incoming_qty = res[product.id]['incoming_qty']
             product.outgoing_qty = res[product.id]['outgoing_qty']
             product.virtual_available = res[product.id]['virtual_available']
