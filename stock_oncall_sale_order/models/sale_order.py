@@ -25,7 +25,10 @@ class SaleOrder(models.Model):
                 oncall_stock_id = self.env['stock.oncall.stock'].create({
                     'partner_id': order.partner_id.id,
                     'sale_order_line_id': line.id,
+                    'uom_id': line.product_uom,
                     'qty_to_deliver': line.product_uom_qty,
+                    'qty_ordered': line.product_uom_qty,
+                    'qty_to_deliver_now': line.product_uom_qty,
                 })
 
         super(SaleOrder, self)._action_confirm()

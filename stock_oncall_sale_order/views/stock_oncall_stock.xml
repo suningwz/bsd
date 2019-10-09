@@ -6,14 +6,20 @@
         <field name="arch" type="xml">
             <form string="On-Call Stock">
                 <sheet>
-                    <group id="sale_id">
-                        <field name="partner_id" />
-                        <field name="sale_order_id" />
-                        <field name="sale_order_line_id" />
-                        <field name="product_id" />
-                    </group>
-                    <group id="delivery">
-                        <field name="qty_to_deliver" />
+                    <group>
+                        <group id="sale_id">
+                            <field name="partner_id" readonly="1"/>
+                            <field name="sale_order_id" />
+                            <field name="sale_order_line_id" readonly="1"/>
+                            <field name="product_id" />
+                        </group>
+                        <group id="delivery">
+                            <field name="qty_ordered" readonly="1" />
+                            <field name="qty_to_deliver" readonly="1"/>
+                            <field name="qty_to_deliver_now" />
+                            <button name="deliver_products" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
+                            <field name="qty_done" readonly="1"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
