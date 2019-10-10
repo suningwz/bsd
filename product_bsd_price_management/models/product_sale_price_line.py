@@ -23,7 +23,7 @@ class ProductSalePriceLine(models.Model):
     qty_for_discount = fields.Integer("Qty Discount", default=1)
     price_discount = fields.Float("Price Discount")
 
-    @api.multi
+
     @api.depends('price_uv', 'qty_uv')
     def _compute_unit_price(self):
         for line in self:
