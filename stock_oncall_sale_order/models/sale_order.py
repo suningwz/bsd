@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.multi
+
     def _action_confirm(self):
         for order in self:
             # Check if on-call route is used and if customer has a specific stock location, if not, create it
