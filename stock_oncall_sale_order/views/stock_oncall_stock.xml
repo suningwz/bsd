@@ -4,7 +4,7 @@
         <field name="name">stock_oncall_stock_form</field>
         <field name="model">stock.oncall.stock</field>
         <field name="arch" type="xml">
-            <form string="On-Call Stock">
+            <form string="On-Call Stock" create="false">
                 <sheet>
                     <group>
                         <group id="sale_id">
@@ -17,7 +17,7 @@
                             <field name="qty_ordered" readonly="1" />
                             <field name="qty_to_deliver" readonly="1"/>
                             <field name="qty_to_deliver_now" />
-                            <button name="deliver_products" class="oe_highlight" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
+                            <button name="deliver_products_single_line" class="oe_highlight" string="Deliver" type="object"/>
                             <field name="qty_done" readonly="1"/>
                         </group>
                     </group>
@@ -30,14 +30,14 @@
         <field name="name">stock_oncall_stock_tree</field>
         <field name="model">stock.oncall.stock</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <tree editable="top" create="false">
                 <field name="partner_id" />
                 <field name="sale_order_id" />
                 <field name="product_id" />
                 <field name="qty_ordered" readonly="1" />
                 <field name="qty_to_deliver" readonly="1"/>
-                <button name="deliver_products" class="oe_highlight" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
                 <field name="qty_to_deliver_now" />
+                <button name="deliver_products_single_line" class="oe_highlight" string="Deliver" type="object"/>
                 <field name="qty_done" readonly="1"/>
             </tree>
         </field>

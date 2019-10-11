@@ -28,7 +28,8 @@ class SaleOrder(models.Model):
                     'uom_id': line.product_uom,
                     'qty_to_deliver': line.product_uom_qty,
                     'qty_ordered': line.product_uom_qty,
-                    'qty_to_deliver_now': line.product_uom_qty,
+                    'qty_to_deliver_now': 0,
+                    'qty_done': 0,
                 })
 
         super(SaleOrder, self)._action_confirm()
