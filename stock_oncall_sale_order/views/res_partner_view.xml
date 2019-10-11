@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record model="ir.actions.act_window" id="partner_oncall_stock">
+        <field name="name">Partner OnCall Stock</field>
         <field name="context">{}</field>
         <field name="domain">[('partner_id', 'child_of', partner_id)]</field>
         <field name="name">On-Call Stock</field>

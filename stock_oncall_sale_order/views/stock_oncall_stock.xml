@@ -17,7 +17,7 @@
                             <field name="qty_ordered" readonly="1" />
                             <field name="qty_to_deliver" readonly="1"/>
                             <field name="qty_to_deliver_now" />
-                            <button name="deliver_products" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
+                            <button name="deliver_products" class="oe_highlight" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
                             <field name="qty_done" readonly="1"/>
                         </group>
                     </group>
@@ -30,11 +30,15 @@
         <field name="name">stock_oncall_stock_tree</field>
         <field name="model">stock.oncall.stock</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="top">
                 <field name="partner_id" />
                 <field name="sale_order_id" />
                 <field name="product_id" />
-                <field name="qty_to_deliver" />
+                <field name="qty_ordered" readonly="1" />
+                <field name="qty_to_deliver" readonly="1"/>
+                <button name="deliver_products" class="oe_highlight" string="Deliver now" type="object" attrs="{'invisible': [('qty_to_deliver_now', '=', 0)]}"/>
+                <field name="qty_to_deliver_now" />
+                <field name="qty_done" readonly="1"/>
             </tree>
         </field>
     </record>
