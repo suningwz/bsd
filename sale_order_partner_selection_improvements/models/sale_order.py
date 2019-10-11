@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     def _onchange_partner_id(self):
         return {
             'domain': {
-                'partner_invoice_id': [] if not self.partner_id else [('parent_id', '=', self.partner_id.id)],
-                'partner_shipping_id': [] if not self.partner_id else [('parent_id', '=', self.partner_id.id)]
+                'partner_invoice_id': [] if not self.partner_id else [('parent_id', '=', self.partner_id.id), ('type', '=', 'invoice')],
+                'partner_shipping_id': [] if not self.partner_id else [('parent_id', '=', self.partner_id.id), ('type', '=', 'delivery')]
             }
         }

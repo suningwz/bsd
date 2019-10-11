@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_selection_improvement_form_view">
+        <field name="name">product_selection_improvement_form_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form/group[1]" position="after">
+                <field name="price_line_ids">
+                    <tree>
+                        <field name="unit_price"/>
+                        <field name="price_uv"/>
+                        <field name="qty_uv"/>
+                        <field name="price_box"/>
+                        <field name="qty_box"/>
+                        <field name="qty_pallet"/>
+                        <field name="price_indu"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

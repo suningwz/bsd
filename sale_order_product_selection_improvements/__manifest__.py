@@ -8,9 +8,10 @@
         Sale Order Product Selection Improvements
 
         
-        This modules adds a category in sale.order.line model. When the category is selected, users can only select products of this category.
-        This modules adds the category field in the pop-up when adding a sale.order.line.
+        This module adds a category in sale.order.line model. When the category is selected, users can only select products of this category.
+        This module adds the category field in the pop-up when adding a sale.order.line.
         
+        This module also adds a field with qty available in stock of the product selected in the pop-up.
 
         This module has been developed by François WYAIME @ AbAKUS it-solutions.
     """,

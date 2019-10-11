@@ -9,6 +9,8 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    price_line_ids = fields.One2many('product.sale.price.line', 'product_id', related="product_id.product_tmpl_id.sale_price_line_ids")
+
     @api.onchange('product_uom', 'product_uom_qty')
     def product_uom_change(self):
         # TODO: Dictionnary between UoM name and price field
