@@ -1,0 +1,230 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_bsd_price_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20190930\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-14 10:43+0000\n"
+"PO-Revision-Date: 2019-10-14 12:48+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr_BE\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: product_bsd_price_management
+#: model:uom.category,name:product_bsd_price_management.uom_category_bsd
+msgid "BSD"
+msgstr "BSD"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_product__sale_price_line_ids
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_template__sale_price_line_ids
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_sale_order_line__price_line_ids
+#: model_terms:ir.ui.view,arch_db:product_bsd_price_management.product_template_add_bsd_price_tab
+msgid "BSD Sale Price"
+msgstr "Prix de Vente BSD"
+
+#. module: product_bsd_price_management
+#: model_terms:ir.ui.view,arch_db:product_bsd_price_management.product_template_add_bsd_price_tab
+msgid "BSD Sale Prices"
+msgstr "Prix de Vente BSD"
+
+#. module: product_bsd_price_management
+#: model:uom.uom,name:product_bsd_price_management.uom_box
+msgid "Box"
+msgstr "Carton"
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: product_bsd_price_management
+#: model:uom.uom,name:product_bsd_price_management.uom_discount
+msgid "Discount"
+msgstr "Remise"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_ir_model_fields
+msgid "Fields"
+msgstr "Champs"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_bsd_price_management
+#: model:uom.uom,name:product_bsd_price_management.uom_indu
+msgid "Indu"
+msgstr "Indu"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_res_partner__is_indu
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_res_users__is_indu
+msgid "Is Indu"
+msgstr "Est Indu"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: product_bsd_price_management
+#: model:uom.uom,name:product_bsd_price_management.uom_pallet
+msgid "Pallet"
+msgstr "Palette"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__price_box
+msgid "Price Box"
+msgstr "Prix Carton"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__price_indu
+msgid "Price Indu"
+msgstr "Prix Indu"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__price_uv
+msgid "Price U.V."
+msgstr "Prix U.V."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_product__list_price
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_template__list_price
+msgid "Price at which the product is sold to customers."
+msgstr "Prix auquel l'article est vendu au client."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unité de mesure d'article"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__qty_box
+msgid "Qty Box"
+msgstr "Qté Carton"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__qty_pallet
+msgid "Qty Pallet"
+msgstr "Qté Palette"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__qty_uv
+msgid "Qty U.V."
+msgstr "Qté U.V."
+
+#. module: product_bsd_price_management
+#: code:addons/product_bsd_price_management/models/product_sale_price_line.py:31
+#, python-format
+msgid "Qty must be greater than 0"
+msgstr "Qté doit être supérieure à 0."
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne du bon de commande"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_product__list_price
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_template__list_price
+msgid "Sales Price"
+msgstr "Prix de vente"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_sale_order_line__sell_price_selector
+msgid "Sell Price Selector"
+msgstr "Sélecteur de Prix de Vente"
+
+#. module: product_bsd_price_management
+#: model:uom.uom,name:product_bsd_price_management.uom_uv
+msgid "Sell Unit"
+msgstr "Unité de Vente"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__qty_pallet
+msgid "The number of sell unit that can be stored in one pallet."
+msgstr "Le nombre d'unité de vente qui peut être mis sur une palette."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__price_uv
+msgid "The price of one Sell Unit"
+msgstr "Le prix d'une Unité de Vente"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__unit_price
+msgid "The price of the Sell Unit / the quantity of item in a Sell Unit"
+msgstr "Le prix d'une Unité de Vente / La quantité d'objets dansu ne Unité de Vente"
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__price_box
+msgid "The price used for one sell unit if the client buy a complete box."
+msgstr "Le prix utilisé pour une Unité de Vente si le client achète au moins un carton."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__qty_uv
+msgid "The quantity of item in one Sell Unit."
+msgstr "La quantité d'objets dans une Unité de Vente."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,help:product_bsd_price_management.field_product_sale_price_line__qty_box
+msgid "The quantity of sell unit contained in a box."
+msgstr "La quantité d'Unité de Vente dans un carton."
+
+#. module: product_bsd_price_management
+#: model:ir.model.fields,field_description:product_bsd_price_management.field_product_sale_price_line__unit_price
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: product_bsd_price_management
+#: model:ir.model,name:product_bsd_price_management.model_product_sale_price_line
+msgid "line containing all prices for one product"
+msgstr "ligne contenant tous les prix d'un article"
