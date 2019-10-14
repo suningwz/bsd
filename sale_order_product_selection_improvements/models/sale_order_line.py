@@ -19,6 +19,6 @@ class SaleOrderLine(models.Model):
     def _onchange_categ_id(self):
         return {
             'domain': {
-                'product_id': [('categ_id', '=', self.categ_id.id)] if self.categ_id else []
+                'product_id': [('categ_id', 'child_of', self.categ_id.id)] if self.categ_id else []
             }
         }

@@ -37,7 +37,6 @@
         'security/ir.model.access.csv',
 
         'views/product_template.xml',
-        'views/uom_uom.xml',
         'views/res_partner.xml',
         'views/sale_order.xml',
     ],

@@ -18,6 +18,9 @@
                     </tree>
                 </field>
             </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group[1]/field[@name='price_unit']" position="after">
+                <field name="sell_price_selector" widget="radio"/>
+            </xpath>
         </field>
     </record>
 </odoo>

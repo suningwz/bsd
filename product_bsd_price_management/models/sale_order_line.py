@@ -9,14 +9,18 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    price_line_ids = fields.One2many('product.sale.price.line', 'product_id', related="product_id.product_tmpl_id.sale_price_line_ids")
+    def compute_default(self):
+        return self.env['ir.model.fields'].search([('model_id', '=', self.env.ref('product_bsd_price_management.model_product_sale_price_line').id), ('name', '=', "price_uv")])
 
-    @api.onchange('product_uom', 'product_uom_qty')
-    def product_uom_change(self):
-        # TODO: Dictionnary between UoM name and price field
-        super(SaleOrderLine, self).product_uom_change()
-        if self.product_uom and self.product_id and self.product_id.product_tmpl_id and self.product_id.product_tmpl_id.sale_price_line_ids and self.product_uom.sale_price_field:
-            if self.order_id.partner_id and not self.order_id.partner_id.is_indu and self.product_uom.sale_price_field.name == 'price_indu':
-                self.price_unit = self.product_id.product_tmpl_id.sale_price_line_ids[0][self.env.ref('product_bsd_price_management.uom_uv').sale_price_field.name]
-            else:
-                self.price_unit = self.product_id.product_tmpl_id.sale_price_line_ids[0][self.product_uom.sale_price_field.name]
+    def compute_domain(self):
+        return [('model_id', '=', self.env.ref('product_bsd_price_management.model_product_sale_price_line').id), ('name', 'like', 'price'), ('name', '!=', "unit_price")]
+
+    price_line_ids = fields.One2many('product.sale.price.line', 'product_id',
+                                     related="product_id.product_tmpl_id.sale_price_line_ids")
+    sell_price_selector = fields.Many2one('ir.model.fields', string="Sell Price Selector",
+                                          domain=compute_domain, default=compute_default)
+
+    @api.onchange('sell_price_selector', 'product_id')
+    def sell_price_selector_change(self):
+        if self.sell_price_selector and self.product_id and self.product_id.product_tmpl_id and self.product_id.product_tmpl_id.sale_price_line_ids:
+            self.price_unit = self.product_id.product_tmpl_id.sale_price_line_ids[0][self.sell_price_selector.name]
