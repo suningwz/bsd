@@ -122,7 +122,7 @@ class StockOnCallStock(models.Model):
     # TODO : create a method to see all pickings for one oncall
     def open_pickings(self):
         return {
-            'name': "Stock Picking",
+            'name': _("Stock Picking"),
             'type': 'ir.actions.act_window',
             'res_model': 'stock.picking',
             'views': [(self.env.ref('stock.vpicktree').id, 'tree'), (False, 'form')],
