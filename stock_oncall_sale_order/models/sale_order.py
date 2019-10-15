@@ -1,13 +1,21 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import logging
 
 _logger = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'sale_order_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
+    stock_picking_ids = fields.Many2many('stock.picking', string="Stock Pickings",
+                                         related="oncall_stock_ids.stock_picking_ids")
+    stock_pickings_count = fields.Integer(compute='_compute_stock_pickings_count')
+
+    def _compute_stock_pickings_count(self):
+        if self.stock_picking_ids:
+            self.stock_pickings_count = len(self.stock_picking_ids)
 
     @api.one
     def _compute_oncall_product_count(self):
@@ -34,3 +42,16 @@ class SaleOrder(models.Model):
                     })
 
         super(SaleOrder, self)._action_confirm()
+
+    def view_pickings(self):
+        return {
+            'name': _("Stock Picking"),
+            'type': 'ir.actions.act_window',
+            'res_model': 'stock.picking',
+            'views': [(self.env.ref('stock.vpicktree').id, 'tree'), (False, 'form')],
+            'view_mode': "tree,form",
+            'view_type': "form",
+            'search_view_id': self.env.ref('stock.view_picking_internal_search').id,
+            'domain': [('id', 'in', self.stock_picking_ids.ids)],
+            'context': {}
+        }

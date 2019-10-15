@@ -72,8 +72,8 @@ Use cases :
 - valorisation de l'inventaire : BSD + par clients
 
 # TODO :
-- voir les pickings depuis un oncall stock
-- voir les oncall stocks responsables d'un picking
+- voir les pickings depuis un oncall stock => OK
+- voir les oncall stocks responsables d'un picking => OK
 - ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée
 - marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall
 - Voir les pickings (crées depuis les OnCall) depuis les SO de base

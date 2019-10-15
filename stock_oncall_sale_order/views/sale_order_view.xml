@@ -18,6 +18,11 @@
                     <field string="Products On-Call" name="oncall_product_count" widget="statinfo"/>
                 </button>
             </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="view_pickings" icon="fa-truck" attrs="{'invisible': [('oncall_product_count', '=', 0)]}">
+                    <field string="OnCall Pickings" name="stock_pickings_count" widget="statinfo"/>
+                </button>
+            </xpath>
         </field>
     </record>
 </odoo>

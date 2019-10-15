@@ -21,6 +21,7 @@
         'views/sale_order_view.xml',
         'views/stock_oncall_stock.xml',
         'views/product_view.xml',
+        'views/stock_picking.xml',
 
         'data/stock_location_route.xml',
         'security/ir.model.access.csv',
