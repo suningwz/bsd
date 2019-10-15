@@ -39,6 +39,7 @@
                 <field name="qty_to_deliver" readonly="1"/>
                 <field name="qty_to_deliver_now" />
                 <button name="deliver_products" class="oe_highlight" string="Deliver" type="object"/>
+                <button name="open_pickings" class="oe_highlight" string="View Pickings" type="object"/>
                 <field name="qty_done" readonly="1"/>
             </tree>
         </field>
