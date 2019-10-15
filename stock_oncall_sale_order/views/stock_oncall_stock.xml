@@ -49,7 +49,9 @@
         <field name="model_id" ref="stock_oncall_sale_order.model_stock_oncall_stock"/>
         <field name="state">code</field>
         <field name="condition">True</field>
-        <field name="code">.deliver_products(
+        <field name="code">
+            if records:
+                action = records.deliver_products()
         </field>
         <field name="binding_model_id" ref="stock_oncall_sale_order.model_stock_oncall_stock"/>
         <field name="binding_type">action</field>

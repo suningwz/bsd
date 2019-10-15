@@ -37,6 +37,7 @@ class StockOnCallStock(models.Model):
             raise UserError(_('Multiple partners in the selected lines, please select only one partner by batch.'))
 
         # Check Data
+        oncall_to_transfer = []
         transfer_something = False
         for oncall in self:
             # If nothing selected, skip to the next
@@ -52,6 +53,7 @@ class StockOnCallStock(models.Model):
                 _logger.debug("%s | Too much qty to order now related to what you have to deliver in all", oncall.id)
                 oncall.qty_to_deliver_now = oncall.qty_to_deliver
             transfer_something = True
+            oncall_to_transfer.append(oncall)
 
         if not transfer_something:
             raise UserError(_('Nothing to transfer as nothing is set.'))
@@ -66,7 +68,7 @@ class StockOnCallStock(models.Model):
         origin_ref = ''
 
         # Compute origin ref and create moves
-        for oncall in self:
+        for oncall in oncall_to_transfer:
             origin_ref += oncall.sale_order_id.name + ", "
 
             # Create stock move
@@ -92,7 +94,7 @@ class StockOnCallStock(models.Model):
             move = self.env['stock.move'].create(vals)
             move._action_assign()
 
-            oncall.stock_picking_ids = [(4, picking_id)]
+            oncall.stock_picking_ids = [(4, picking_id.id)]
 
             oncall.qty_done = oncall.qty_done + oncall.qty_to_deliver_now
             oncall.qty_to_deliver = oncall.qty_ordered - oncall.qty_done
@@ -103,7 +105,7 @@ class StockOnCallStock(models.Model):
             'origin': origin_ref,
         })
         picking_id.action_confirm()
-        picking_id._action_assign()
+        picking_id.action_assign()
 
 
         """result = {

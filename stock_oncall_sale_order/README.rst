@@ -78,8 +78,8 @@ Use cases :
 - marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall
 - Voir les pickings (crées depuis les OnCall) depuis les SO de base
 - faire un flag des pickings venant des OnCall
-- faire une disctinction du montant dans la valorisation de l'inventaire
 - gérer la création des 2 ou 3 pickcings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall
+- faire une disctinction du montant dans la valorisation de l'inventaire
 
 
 Installation notes

@@ -21,15 +21,16 @@ class SaleOrder(models.Model):
         for order in self:
             # Check if on-call route is used
             for line in order.order_line:
-                # Create On-Call Stock
-                oncall_stock_id = self.env['stock.oncall.stock'].create({
-                    'partner_id': order.partner_id.id,
-                    'sale_order_line_id': line.id,
-                    'uom_id': line.product_uom,
-                    'qty_to_deliver': line.product_uom_qty,
-                    'qty_ordered': line.product_uom_qty,
-                    'qty_to_deliver_now': 0,
-                    'qty_done': 0,
-                })
+                if line.route_id.is_oncall_route:
+                    # Create On-Call Stock
+                    oncall_stock_id = self.env['stock.oncall.stock'].create({
+                        'partner_id': order.partner_id.id,
+                        'sale_order_line_id': line.id,
+                        'uom_id': line.product_uom,
+                        'qty_to_deliver': line.product_uom_qty,
+                        'qty_ordered': line.product_uom_qty,
+                        'qty_to_deliver_now': 0,
+                        'qty_done': 0,
+                    })
 
         super(SaleOrder, self)._action_confirm()
