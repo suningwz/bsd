@@ -71,6 +71,16 @@ Use cases :
 - faire un flag sur les picking lists venant du sur-appel
 - valorisation de l'inventaire : BSD + par clients
 
+# TODO :
+- voir les pickings depuis un oncall stock
+- voir les oncall stocks responsables d'un picking
+- ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée
+- marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall
+- Voir les pickings (crées depuis les OnCall) depuis les SO de base
+- faire un flag des pickings venant des OnCall
+- faire une disctinction du montant dans la valorisation de l'inventaire
+- gérer la création des 2 ou 3 pickcings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall
+
 
 Installation notes
 ==================
