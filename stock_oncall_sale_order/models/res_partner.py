@@ -6,7 +6,6 @@ _logger = logging.getLogger(__name__)
 class Partner(models.Model):
     _inherit = 'res.partner'
 
-    oncall_location_id = fields.Many2one('stock.location', string="Oncall Main Stock Location")
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'partner_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
 
