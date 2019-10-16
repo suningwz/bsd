@@ -8,7 +8,15 @@ class StockPicking(models.Model):
 
     oncall_stock_ids = fields.Many2many('stock.oncall.stock', string="OnCall Stocks")
     oncall_stock_count = fields.Integer(compute="_compute_oncall_stock_count", string="Products On-Call")
+    is_from_oncall = fields.Boolean(compute="_compute_is_from_oncall", string="Is From OnCall", store=True)
 
+    @api.multi
+    @api.depends('oncall_stock_ids')
+    def _compute_is_from_oncall(self):
+        for picking in self:
+            picking.is_from_oncall = bool(picking.oncall_stock_ids)
+
+    @api.depends('oncall_stock_ids')
     def _compute_oncall_stock_count(self):
         if self.oncall_stock_ids:
             self.oncall_stock_count = len(self.oncall_stock_ids)
