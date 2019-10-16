@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Product Template -->
+    <record model="ir.actions.act_window" id="product_template_oncall_stock">
+        <field name="name">Product OnCall Stock</field>
+        <field name="context">{}</field>
+        <field name="domain">[('product_tmpl_id', '=', product_tmpl_id)]</field>
+        <field name="name">On-Call Stock</field>
+        <field name="res_model">stock.oncall.stock</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_product_template_oncall_orders">
+        <field name="name">view_product_template_oncall_orders</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_quants']" position="after">
+                <button class="oe_stat_button" name="qty_owned_available" icon="fa-building" groups="sales_team.group_sale_salesman">
+                    <field string="Owned Qty" name="qty_owned_available" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="action" name="%(product_template_oncall_stock)d" icon="fa-building" groups="sales_team.group_sale_salesman" context="{'product_tmpl_id': id}">
+                    <field string="On-Call Stock" name="oncall_product_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Product -->
+    <record model="ir.actions.act_window" id="product_product_oncall_stock">
+        <field name="context">{}</field>
+        <field name="domain">[('product_id', '=', product_id)]</field>
+        <field name="name">On-Call Stock</field>
+        <field name="res_model">stock.oncall.stock</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_product_product_oncall_orders">
+        <field name="name">view_product_product_oncall_orders</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@class='oe_stat_button'][1]" position="after">
+                <button class="oe_stat_button" name="qty_owned_available" icon="fa-building" groups="sales_team.group_sale_salesman">
+                    <field string="Owned Qty" name="qty_owned_available" widget="statinfo"/>
+                </button>
+                <button class="oe_stat_button" type="action" name="%(product_product_oncall_stock)d" icon="fa-building" groups="sales_team.group_sale_salesman" context="{'product_id': id}">
+                    <field string="On-Call Stock" name="oncall_product_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

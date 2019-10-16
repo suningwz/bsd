@@ -1,48 +1,57 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    oncall_stock_ids = fields.One2many('stock.oncall.stock', 'sale_order_id', string="On-Call Stock")
+    oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
+    stock_picking_ids = fields.Many2many('stock.picking', string="Stock Pickings",
+                                         related="oncall_stock_ids.stock_picking_ids")
+    stock_pickings_count = fields.Integer(compute='_compute_stock_pickings_count')
 
+    def _compute_stock_pickings_count(self):
+        if self.stock_picking_ids:
+            self.stock_pickings_count = len(self.stock_picking_ids)
+
+    @api.one
+    def _compute_oncall_product_count(self):
+        total = 0
+        for order in self.oncall_stock_ids:
+            total += order.qty_to_deliver
+        self.oncall_product_count = total
+
+    @api.multi
     def _action_confirm(self):
         for order in self:
-            # Check if on-call route is used and if customer has a specific stock location, if not, create it
+            # Check if on-call route is used
             for line in order.order_line:
-                if line.route_id and line.route_id.create_specific_location_for_customer:
-                    if order.partner_id.property_stock_customer == self.env.ref('stock.stock_location_customers'):
-                        # Create the location
-                        customer_location_id = self.env['stock.location'].create({
-                            'name': 'On-Call: ' + (order.partner_id.ref if order.partner_id.ref else order.partner_id.name),
-                            'location_id': self.env.ref('stock.stock_location_locations_virtual').id,
-                            'usage': 'internal',
-                            'partner_id': order.partner_id.id
-                        })
-                        order.partner_id.property_stock_customer = customer_location_id
-
-                        # Create the pull rule
-                        pull_rule_id = self.env['stock.rule'].create({
-                            'name': self.env.ref('stock.stock_location_stock').name + ' => ' + customer_location_id.name,
-                            'action': 'pull',
-                            'picking_type_id': self.env.ref('stock.picking_type_internal').id,
-                            'location_src_id': self.env.ref('stock.stock_location_stock').id,
-                            'location_id': customer_location_id.id,
-                            'procure_method': 'make_to_stock',
-                            'route_id': line.route_id.id,
-                        })
-
-                        # Create the push rule
-                        push_rule_id = self.env['stock.rule'].create({
-                            'name': customer_location_id.name + ' => Customer',
-                            'action': 'push',
-                            'picking_type_id': self.env.ref('stock.picking_type_out').id,
-                            'location_src_id': customer_location_id.id,
-                            'location_id': self.env.ref('stock.stock_location_customers').id,
-                            'procure_method': 'make_to_stock',
-                            'route_id': line.route_id.id,
-                        })
+                if line.route_id.is_oncall_route:
+                    # Create On-Call Stock
+                    oncall_stock_id = self.env['stock.oncall.stock'].create({
+                        'partner_id': order.partner_id.id,
+                        'sale_order_line_id': line.id,
+                        'uom_id': line.product_uom,
+                        'qty_to_deliver': line.product_uom_qty,
+                        'qty_ordered': line.product_uom_qty,
+                        'qty_to_deliver_now': 0,
+                        'qty_done': 0,
+                    })
 
         super(SaleOrder, self)._action_confirm()
 
+    def view_pickings(self):
+        return {
+            'name': _("Stock Picking"),
+            'type': 'ir.actions.act_window',
+            'res_model': 'stock.picking',
+            'views': [(self.env.ref('stock.vpicktree').id, 'tree'), (False, 'form')],
+            'view_mode': "tree,form",
+            'view_type': "form",
+            'search_view_id': self.env.ref('stock.view_picking_internal_search').id,
+            'domain': [('id', 'in', self.stock_picking_ids.ids)],
+            'context': {}
+        }

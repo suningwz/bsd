@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <!-- Add header text -->
             <xpath expr="//field[@name='sequence']" position="after">
-                <field name="create_specific_location_for_customer" />
+                <field name="is_oncall_route" />
             </xpath>
         </field>
     </record>
