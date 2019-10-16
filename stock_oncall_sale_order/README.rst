@@ -1,5 +1,5 @@
 =====================================
-  Stock On-Call Sales Order Management
+ Stock On-Call Sales Order Management
 =====================================
 
 This module is a custom add-on to ``stock`` and ``sale``.
