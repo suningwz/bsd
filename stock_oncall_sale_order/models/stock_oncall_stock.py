@@ -58,6 +58,7 @@ class StockOnCallStock(models.Model):
         if not transfer_something:
             raise UserError(_('Nothing to transfer as nothing is set.'))
 
+
         picking_id = self.env['stock.picking'].create({
             'company_id': self.env.user.company_id.id,
             'partner_id': self[0].partner_id.id,
@@ -71,29 +72,7 @@ class StockOnCallStock(models.Model):
         for oncall in oncall_to_transfer:
             origin_ref += oncall.sale_order_id.name + ", "
 
-            # Create stock move
-            vals = {
-                'name': oncall.product_id.name or '',
-                'product_id': oncall.product_id.id,
-                'product_uom': oncall.uom_id.id,
-                'product_uom_qty': oncall.qty_to_deliver_now,
-                'date': oncall.create_date,
-                'date_expected': oncall.create_date,
-                'location_id': picking_id.location_id.id,
-                'location_dest_id': picking_id.location_dest_id.id,
-                'picking_id': picking_id.id,
-                'partner_id': picking_id.partner_id.id,
-                'state': 'draft',
-                'company_id': picking_id.company_id.id,
-                'picking_type_id': picking_id.picking_type_id.id,
-                'origin': _('OnCall: ') + oncall.sale_order_id.name,
-                'route_ids': picking_id.picking_type_id.warehouse_id and [
-                    (6, 0, [x.id for x in picking_id.picking_type_id.warehouse_id.route_ids])] or [],
-                'warehouse_id': picking_id.picking_type_id.warehouse_id.id,
-                'sale_line_id': oncall.sale_order_line_id.id
-            }
-            move = self.env['stock.move'].create(vals)
-            move._action_assign()
+            self.create_move(oncall, picking_id)
 
             oncall.stock_picking_ids = [(4, picking_id.id)]
 
@@ -108,17 +87,41 @@ class StockOnCallStock(models.Model):
         picking_id.action_confirm()
         picking_id.action_assign()
 
-
-        """result = {
-            'name': _('View Picking List'),
+        return {
+            'name': _('Picking'),
             'type': 'ir.actions.act_window',
-            'views': [[self.env.ref('stock.view_picking_form').id, 'form']],
+            'view_mode': 'form',
+            'views': [(self.env.ref('stock.view_picking_form').id, 'form')],
             'target': 'current',
             'context': {},
-            'res_model': 'stock.oncall.stock',
+            'res_model': 'stock.picking',
             'res_id': picking_id.id,
-            }
-        return result"""
+        }
+
+    def create_move(self, oncall, picking_id):
+        # Create stock move
+        vals = {
+            'name': oncall.product_id.name or '',
+            'product_id': oncall.product_id.id,
+            'product_uom': oncall.uom_id.id,
+            'product_uom_qty': oncall.qty_to_deliver_now,
+            'date': oncall.create_date,
+            'date_expected': oncall.create_date,
+            'location_id': picking_id.location_id.id,
+            'location_dest_id': picking_id.location_dest_id.id,
+            'picking_id': picking_id.id,
+            'partner_id': picking_id.partner_id.id,
+            'state': 'draft',
+            'company_id': picking_id.company_id.id,
+            'picking_type_id': picking_id.picking_type_id.id,
+            'origin': _('OnCall: ') + oncall.sale_order_id.name,
+            'route_ids': picking_id.picking_type_id.warehouse_id and [
+                (6, 0, [x.id for x in picking_id.picking_type_id.warehouse_id.route_ids])] or [],
+            'warehouse_id': picking_id.picking_type_id.warehouse_id.id,
+            'sale_line_id': oncall.sale_order_line_id.id
+        }
+        move = self.env['stock.move'].create(vals)
+        move._action_assign()
 
     # TODO : create a method to see all pickings for one oncall
     def open_pickings(self):
