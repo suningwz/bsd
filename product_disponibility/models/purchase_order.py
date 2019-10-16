@@ -39,7 +39,6 @@ class PurchaseOrder( models.Model ) :
         string  = "Product"
     )
 
-    @api.multi
     def _compute_sales_count(self):
         product_ids = set()
         r = {}
@@ -83,7 +82,6 @@ class PurchaseOrder( models.Model ) :
     def _onchange_reception_date( self ):
         self.date_disponibility = str( self.reception_date + datetime.timedelta( days = 8 ) )
 
-    @api.multi
     def update_related_documents( self ):
         SaleOrderLine = self.env[ 'sale.order.line' ]
 
@@ -108,7 +106,6 @@ class PurchaseOrder( models.Model ) :
             for order in sale_order_ids:
                 order.update_disponibility_date()"""
 
-    @api.multi
     def action_view_sales_po( self ):
         product_ids = set()
         sale_lines = []

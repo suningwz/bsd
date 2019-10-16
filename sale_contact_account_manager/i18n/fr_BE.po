@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_contact_account_manager
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e-20190930\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-14 08:05+0000\n"
+"PO-Revision-Date: 2019-10-14 10:07+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: fr\n"
+"X-Generator: Poedit 2.2.3\n"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order__method_id
+msgid "Method"
+msgstr "Méthode"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,field_description:sale_contact_account_manager.field_sale_order_method__name
+msgid "Method Name"
+msgstr "Nom de la méthode"
+
+#. module: sale_contact_account_manager
+#: model:ir.actions.act_window,name:sale_contact_account_manager.open_sale_method
+#: model:ir.ui.menu,name:sale_contact_account_manager.menu_sale_method_config
+msgid "Sale Methods"
+msgstr "Méthodes de Vente"
+
+#. module: sale_contact_account_manager
+#: model:ir.model,name:sale_contact_account_manager.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_contact_account_manager
+#: model:ir.model.fields,help:sale_contact_account_manager.field_sale_order__method_id
+msgid "The method define how the sale has been done (on the road, by phone, ...)"
+msgstr "La méthode de vente défini comment la vente a été faite (sur la route, par téléphone, par email, …)"
+
+#. module: sale_contact_account_manager
+#: model_terms:ir.ui.view,arch_db:sale_contact_account_manager.sale_contact_add_method_field_in_so
+msgid "Who"
+msgstr "Qui"
+
+#. module: sale_contact_account_manager
+#: model:ir.model,name:sale_contact_account_manager.model_sale_order_method
+msgid "sale.order.method"
+msgstr ""

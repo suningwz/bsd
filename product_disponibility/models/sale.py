@@ -26,7 +26,6 @@ class SaleOrder( models.Model) :
         string  = "Product tmp"
     )
 
-    @api.multi
     def update_disponibility_date( self ):
         dates_list = []
 
@@ -49,7 +48,6 @@ class SaleOrder( models.Model) :
         if dates_list:
             self.date_disponibility = max( dates_list )
 
-    @api.multi
     def write( self, vals ):
         dates_list = []
         orderLine  = self.env[ 'sale.order.line' ]
@@ -89,7 +87,6 @@ class SaleOrder( models.Model) :
 
         return super( SaleOrder, self ).create( vals )
 
-    @api.multi
     def update_documents( self, context ):
         orderLine  = self.env[ 'sale.order.line' ]
         picking    = self.env[ 'stock.picking' ]

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_selection_improvement_form_view">
+        <field name="name">product_selection_improvement_form_view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form/group/group[1]/field[@name='product_id']" position="before">
+                <field name="categ_id"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group[1]/field[@name='product_id']" position="attributes">
+                <attribute name="context">{'tree_view_ref': 'product.product_product_tree_view'}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="qty_available" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

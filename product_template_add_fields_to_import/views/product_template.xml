@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="product_template_add_Field_to_import">
+        <field name="name">product_template_add_Field_to_import</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="BSD">
+                    <group>
+                        <group>
+                            <field name="x_studio_purchase_tax"/>
+                            <field name="x_studio_sale_tax"/>
+                            <field name="x_studio_supplier_name"/>
+                            <field name="x_studio_sub_categ_id"/>
+                            <field name="x_studio_incoterm"/>
+                            <field name="x_studio_catalog"/>
+                            <field name="x_studio_supplier_country"/>
+                            <field name="x_studio_packing_mode"/>
+                            <field name="x_studio_gr"/>
+                            <field name="x_studio_internet"/>
+                            <field name="x_studio_image"/>
+                            <field name="x_studio_fost"/>
+                            <field name="x_studio_change"/>
+                            <field name="x_studio_inventory_value"/>
+                            <field name="x_studio_percent_cost"/>
+                            <field name="x_studio_uv_given"/>
+                            <field name="x_studio_uv_bsd"/>
+                            <field name="x_studio_pr_brut"/>
+                            <field name="x_studio_percent_remise"/>
+                            <field name="x_studio_pa_usd"/>
+                            <field name="x_studio_pa_shilling"/>
+                            <field name="x_studio_pa_sterling"/>
+                            <field name="x_studio_fs_suisse"/>
+                            <field name="x_studio_categ_id"/>
+                            <field name="x_studio_version"/>
+                            <field name="x_studio_uom_id"/>
+                            <field name="x_studio_uom_po_id"/>
+                            <field name="x_studio_pv_euro"/>
+                        </group>
+                        <group>
+                            <field name="x_studio_pr_eur"/>
+                            <field name="x_studio_supplier_reference"/>
+                            <field name="x_studio_marge_benef"/>
+                            <field name="x_studio_marge_box"/>
+                            <field name="x_studio_marge_indu"/>
+                            <field name="x_studio_gropack_price"/>
+                            <field name="x_studio_pu_eur"/>
+                            <field name="x_studio_uv_box"/>
+                            <field name="x_studio_pv_ctn"/>
+                            <field name="x_studio_pv_indu"/>
+                            <field name="x_studio_uv_remise"/>
+                            <field name="x_studio_pv_remise"/>
+                            <field name="x_studio_uv_palette"/>
+                            <field name="x_studio_prix_promo"/>
+                            <field name="x_studio_col"/>
+                            <field name="x_studio_p_vidange"/>
+                            <field name="x_studio_condit"/>
+                            <field name="x_studio_has_tag"/>
+                            <field name="x_studio_net_weight"/>
+                            <field name="x_studio_brut_weight"/>
+                            <field name="x_studio_qty_in_stock"/>
+                            <field name="x_studio_reserved_qty"/>
+                            <field name="x_studio_customer_order_qty"/>
+                            <field name="x_studio_supplier_order_qty"/>
+                            <field name="x_studio_deb_pro_ve"/>
+                            <field name="x_studio_fin_pro_ve"/>
+                            <field name="x_studio_pro_ach_price"/>
+                            <field name="x_studio_deb_pro_ac"/>
+                            <field name="x_studio_fin_pro_ac"/>
+                            <field name="x_studio_commodity_code"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

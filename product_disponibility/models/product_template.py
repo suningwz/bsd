@@ -16,7 +16,6 @@ class ProductTemplate( models.Model ):
         track_visibility = "onchange" 
     )
 
-    @api.multi
     def update_order_lines( self ):
         SaleOrderLine = self.env[ 'sale.order.line' ]
         order_line_ids = SaleOrderLine.search( 
@@ -35,7 +34,6 @@ class ProductTemplate( models.Model ):
         for order in saleOrders:
             order.update_disponibility_date()
 
-    @api.multi
     def action_view_sales( self ):
         action = self.env.ref('product_disponibility.update_mad_date_action').read()[0]
         action['domain'] = [('product_tmpl_id', 'in', self.ids)]
@@ -53,7 +51,6 @@ class ProductProduct( models.Model ):
         string  = "Vendu"
     )
 
-    @api.multi
     def _compute_sales_count( self ):
         r = {}
         if not self.user_has_groups('sales_team.group_sale_salesman'):
@@ -71,11 +68,9 @@ class ProductProduct( models.Model ):
             product.sales_count = float_round(r.get(product.id, 0), precision_rounding=product.uom_id.rounding)
         return r
 
-    @api.multi
     def update_order_lines( self ):
         return self.product_tmpl_id.update_order_lines()
 
-    @api.multi
     def action_view_sales(self):
         action = self.env.ref('product_disponibility.update_mad_date_action').read()[0]
         action['domain'] = [('product_id', 'in', self.ids)]

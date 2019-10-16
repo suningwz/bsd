@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="product.category" id="bsd_main_category">
+        <field name="name">BSD</field>
+        <field name="property_cost_method">standard</field>
+        <field name="property_valuation">manual_periodic</field>
+    </record>
+</odoo>
