@@ -75,9 +75,9 @@ Use cases :
 - voir les pickings depuis un oncall stock => OK
 - voir les oncall stocks responsables d'un picking => OK
 - ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée
-- marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall
+- marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall => OK
 - Voir les pickings (crées depuis les OnCall) depuis les SO de base => OK
-- faire un flag des pickings venant des OnCall
+- faire un flag des pickings venant des OnCall => OK
 - gérer la création des 2 ou 3 pickcings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall
 - faire une disctinction du montant dans la valorisation de l'inventaire
 

@@ -89,7 +89,8 @@ class StockOnCallStock(models.Model):
                 'origin': _('OnCall: ') + oncall.sale_order_id.name,
                 'route_ids': picking_id.picking_type_id.warehouse_id and [
                     (6, 0, [x.id for x in picking_id.picking_type_id.warehouse_id.route_ids])] or [],
-                'warehouse_id': picking_id.picking_type_id.warehouse_id.id
+                'warehouse_id': picking_id.picking_type_id.warehouse_id.id,
+                'sale_line_id': oncall.sale_order_line_id.id
             }
             move = self.env['stock.move'].create(vals)
             move._action_assign()
