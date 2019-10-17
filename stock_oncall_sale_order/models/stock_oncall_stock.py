@@ -58,6 +58,7 @@ class StockOnCallStock(models.Model):
         if not transfer_something:
             raise UserError(_('Nothing to transfer as nothing is set.'))
 
+        picking_ids = []
 
         picking_id = self.env['stock.picking'].create({
             'company_id': self.env.user.company_id.id,
@@ -66,6 +67,19 @@ class StockOnCallStock(models.Model):
             'location_id': self.env.ref('stock.picking_type_out').default_location_src_id.id,
             'location_dest_id': self[0].partner_id.property_stock_customer.id,
         })
+        picking_ids.append(picking_id.id)
+
+        picking_pick_id = self.env['stock.picking']
+        if self.env.ref('stock.warehouse0').delivery_steps == "pick_ship":
+            picking_pick_id = self.env['stock.picking'].create({
+                'company_id': self.env.user.company_id.id,
+                'partner_id': self[0].partner_id.id,
+                'picking_type_id': self.env.ref('stock.picking_type_pick').id,
+                'location_id': self.env.ref('stock.picking_type_pick').default_location_src_id.id,
+                'location_dest_id': self.env.ref('stock.picking_type_pick').default_location_dest_id.id,
+            })
+            picking_ids.append(picking_pick_id.id)
+
         origin_ref = ''
 
         # Compute origin ref and create moves
@@ -73,6 +87,9 @@ class StockOnCallStock(models.Model):
             origin_ref += oncall.sale_order_id.name + ", "
 
             self.create_move(oncall, picking_id)
+            if picking_pick_id:
+                self.create_move(oncall, picking_pick_id)
+                oncall.stock_picking_ids = [(4, picking_pick_id.id)]
 
             oncall.stock_picking_ids = [(4, picking_id.id)]
 
@@ -80,22 +97,28 @@ class StockOnCallStock(models.Model):
             oncall.qty_to_deliver = oncall.qty_ordered - oncall.qty_done
             oncall.qty_to_deliver_now = 0
 
-        # TODO manage the OUT in 3 steps
         picking_id.write({
             'origin': origin_ref,
         })
         picking_id.action_confirm()
         picking_id.action_assign()
 
+        if picking_pick_id:
+            picking_pick_id.write({
+                'origin': origin_ref,
+            })
+            picking_pick_id.action_confirm()
+            picking_pick_id.action_assign()
+
         return {
             'name': _('Picking'),
             'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'views': [(self.env.ref('stock.view_picking_form').id, 'form')],
+            'view_mode': 'tree,form',
+            'views': [(self.env.ref('stock.vpicktree').id, 'tree'), (self.env.ref('stock.view_picking_form').id, 'form')],
             'target': 'current',
             'context': {},
             'res_model': 'stock.picking',
-            'res_id': picking_id.id,
+            'domain': [('id', 'in', picking_ids)],
         }
 
     def create_move(self, oncall, picking_id):
