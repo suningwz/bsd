@@ -74,7 +74,7 @@ Use cases :
 # TODO :
 - voir les pickings depuis un oncall stock => OK
 - voir les oncall stocks responsables d'un picking => OK
-- ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée => si uniquement oncall dans SO, sinon, sort les quantités. #TODO: To improve (maybe in procurement_group)
+- ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée => OK, To test
 - marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall => OK
 - Voir les pickings (crées depuis les OnCall) depuis les SO de base => OK
 - faire un flag des pickings venant des OnCall => OK
