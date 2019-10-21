@@ -48,4 +48,18 @@
             </xpath>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="view_add_owned_qty_inventory_valuation">
+        <field name="name">view_add_owned_qty_inventory_valuation</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock_account.view_stock_product_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_at_date']" position="after">
+                <field name="qty_owned_available"/>
+            </xpath>
+            <xpath expr="//field[@name='stock_value']" position="after">
+                <field name="owned_stock_value" sum="Owned Stock Valuation" widget="monetary" options="{'currency_field': 'cost_currency_id'}"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
