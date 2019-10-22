@@ -10,7 +10,7 @@ class ProcurementGroup(models.Model):
     @api.model
     def run(self, product_id, product_qty, product_uom, location_id, name, origin, values):
         route = values['route_ids']
-        if not route or route.id != self.env.ref('stock_oncall_sale_order.route_warehouse0_oncall').id:
+        if not route or not route.is_oncall_route:
             return super(ProcurementGroup, self).run(product_id, product_qty, product_uom, location_id, name, origin, values)
         else:
             return True

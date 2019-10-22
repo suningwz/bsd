@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record model="stock.location.route" id="route_warehouse0_oncall">
-        <field name="name">On-Call</field>
-        <field name="sequence">0</field>
-        <field name="is_oncall_route">True</field>
-        <field name="product_categ_selectable">False</field>
-        <field name="product_selectable">False</field>
-        <field name="warehouse_selectable">False</field>
-        <field name="sale_selectable">True</field>
-    </record>
+    <data noupdate="1">
+        <record model="stock.location.route" id="route_warehouse0_oncall">
+            <field name="name">On-Call</field>
+            <field name="sequence">0</field>
+            <field name="is_oncall_route">True</field>
+            <field name="product_categ_selectable">False</field>
+            <field name="product_selectable">False</field>
+            <field name="warehouse_selectable">False</field>
+            <field name="sale_selectable">True</field>
+        </record>
+    </data>
 </odoo>
