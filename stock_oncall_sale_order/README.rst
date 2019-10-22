@@ -74,13 +74,15 @@ Use cases :
 # TODO :
 - voir les pickings depuis un oncall stock => OK
 - voir les oncall stocks responsables d'un picking => OK
-- ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée
-- marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall
+- ne plus créer le picking de base dans le SO lorsque la route OnCall est sélectionnée => OK
+- marquer les lignes de commandes comme livrées quand on a livré les Pickings crées depuis les OnCall => OK
 - Voir les pickings (crées depuis les OnCall) depuis les SO de base => OK
-- faire un flag des pickings venant des OnCall
-- gérer la création des 2 ou 3 pickcings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall
-- faire une disctinction du montant dans la valorisation de l'inventaire
+    - ajouter les pickings dans liste des picking de la vente (supprimer donc le bouton en +)
+- faire un flag des pickings venant des OnCall => OK
 
+- gérer la création des 2 ou 3 pickings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall => OK, MAIS 1 picking par deliver
+- faire une disctinction du montant dans la valorisation de l'inventaire => OK dans la vue inventory_valuation
+- faire fonctionner la reord rule si la qty owned est < que le min (donc prendre en compte les oncall)
 
 Installation notes
 ==================

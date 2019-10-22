@@ -34,6 +34,12 @@ class ProductProduct(models.Model):
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'product_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
     qty_owned_available = fields.Float('Owned Qty On Hand', compute='_compute_quantities', digits=dp.get_precision('Product Unit of Measure'))
+    owned_stock_value = fields.Float('Owned Value', compute='_compute_owned_valuation')
+
+    @api.one
+    @api.depends('qty_owned_available', 'standard_price')
+    def _compute_owned_valuation(self):
+        self.owned_stock_value = self.qty_owned_available * self.standard_price
 
     @api.one
     def _compute_oncall_product_count(self):
