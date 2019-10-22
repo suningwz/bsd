@@ -81,7 +81,7 @@ Use cases :
 - faire un flag des pickings venant des OnCall => OK
 - gérer la création des 2 ou 3 pickings (pick,pack,out) si le système est paramétré comme ça, lorsqu'on crée des pickings depuis des OnCall => OK, MAIS 1 picking par deliver
 - faire une disctinction du montant dans la valorisation de l'inventaire => OK dans la vue inventory_valuation
-- faire fonctionner la reord rule si la qty owned est < que le min (donc prendre en compte les oncall)
+- faire fonctionner la reord rule si la qty owned est < que le min (donc prendre en compte les oncall) -> OK
 
 Installation notes
 ==================
