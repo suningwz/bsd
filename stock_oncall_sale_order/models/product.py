@@ -27,6 +27,12 @@ class ProductTemplate(models.Model):
             template.incoming_qty = res[template.id]['incoming_qty']
             template.outgoing_qty = res[template.id]['outgoing_qty']
 
+    def _compute_quantities_dict(self):
+        res = super(ProductTemplate, self)._compute_quantities_dict()
+        for product in self:
+            res[product.id]['qty_owned_available'] = product.qty_owned_available
+        return res
+
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
@@ -58,3 +64,9 @@ class ProductProduct(models.Model):
             product.incoming_qty = res[product.id]['incoming_qty']
             product.outgoing_qty = res[product.id]['outgoing_qty']
             product.virtual_available = res[product.id]['virtual_available']
+
+    def _compute_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
+        res = super(ProductProduct, self)._compute_quantities_dict(lot_id, owner_id, package_id, from_date, to_date)
+        for product in self:
+            res[product.id]['qty_owned_available'] = product.qty_owned_available
+        return res

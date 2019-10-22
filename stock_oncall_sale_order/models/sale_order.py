@@ -9,13 +9,6 @@ class SaleOrder(models.Model):
 
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'sale_order_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
-    stock_picking_ids = fields.Many2many('stock.picking', string="Stock Pickings",
-                                         related="oncall_stock_ids.stock_picking_ids")
-    stock_pickings_count = fields.Integer(compute='_compute_stock_pickings_count')
-
-    def _compute_stock_pickings_count(self):
-        if self.stock_picking_ids:
-            self.stock_pickings_count = len(self.stock_picking_ids)
 
     @api.one
     def _compute_oncall_product_count(self):
