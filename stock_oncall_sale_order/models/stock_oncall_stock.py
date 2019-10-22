@@ -66,6 +66,7 @@ class StockOnCallStock(models.Model):
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
             'location_id': self.env.ref('stock.picking_type_out').default_location_src_id.id,
             'location_dest_id': self[0].partner_id.property_stock_customer.id,
+            'sale_id': self.sale_order_id.id,
         })
         picking_ids.append(picking_id.id)
 
@@ -77,6 +78,7 @@ class StockOnCallStock(models.Model):
                 'picking_type_id': self.env.ref('stock.picking_type_pick').id,
                 'location_id': self.env.ref('stock.picking_type_pick').default_location_src_id.id,
                 'location_dest_id': self.env.ref('stock.picking_type_pick').default_location_dest_id.id,
+                'sale_id': self.sale_order_id.id,
             })
             picking_ids.append(picking_pick_id.id)
 
