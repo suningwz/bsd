@@ -13,7 +13,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='toggle_active']" position="before">
+            <xpath expr="//div[@name='button_box']//button[1]" position="before">
                 <button class="oe_stat_button" type="action" name="%(partner_oncall_stock)d" icon="fa-building" groups="sales_team.group_sale_salesman" context="{'partner_id': id}">
                     <field string="Products On-Call" name="oncall_product_count" widget="statinfo"/>
                 </button>
