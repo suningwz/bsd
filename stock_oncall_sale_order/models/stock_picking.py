@@ -20,7 +20,6 @@ class StockPicking(models.Model):
         if self.oncall_stock_ids:
             self.oncall_stock_count = len(self.oncall_stock_ids)
 
-    # TODO : create a method to see all oncall stocks for one picking
     def view_oncalls(self):
         action = self.env.ref('stock_oncall_sale_order.sale_order_oncall_stock').read()[0]
         action['domain'] = [('id', 'in', self.oncall_stock_ids.ids)]

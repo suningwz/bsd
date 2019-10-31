@@ -10,12 +10,13 @@ class SaleOrder(models.Model):
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'sale_order_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
 
-    @api.one
+
     def _compute_oncall_product_count(self):
-        total = 0
-        for order in self.oncall_stock_ids:
-            total += order.qty_to_deliver
-        self.oncall_product_count = total
+        for order in self:
+            total = 0
+            for order in order.oncall_stock_ids:
+                total += order.qty_to_deliver
+            order.oncall_product_count = total
 
     def _action_confirm(self):
         for order in self:

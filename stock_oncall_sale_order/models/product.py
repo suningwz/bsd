@@ -11,12 +11,12 @@ class ProductTemplate(models.Model):
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
     qty_owned_available = fields.Float('Owned Qty On Hand', compute='_compute_quantities', digits=dp.get_precision('Product Unit of Measure'))
 
-    @api.one
     def _compute_oncall_product_count(self):
-        total = 0
-        for stock in self.oncall_stock_ids:
-            total += stock.qty_to_deliver
-        self.oncall_product_count = total
+        for templ in self:
+            total = 0
+            for stock in templ.oncall_stock_ids:
+                total += stock.qty_to_deliver
+            templ.oncall_product_count = total
 
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
@@ -42,17 +42,17 @@ class ProductProduct(models.Model):
     qty_owned_available = fields.Float('Owned Qty On Hand', compute='_compute_quantities', digits=dp.get_precision('Product Unit of Measure'))
     owned_stock_value = fields.Float('Owned Value', compute='_compute_owned_valuation')
 
-    @api.one
     @api.depends('qty_owned_available', 'standard_price')
     def _compute_owned_valuation(self):
-        self.owned_stock_value = self.qty_owned_available * self.standard_price
+        for prod in self:
+            prod.owned_stock_value = prod.qty_owned_available * prod.standard_price
 
-    @api.one
     def _compute_oncall_product_count(self):
-        total = 0
-        for stock in self.oncall_stock_ids:
-            total += stock.qty_to_deliver
-        self.oncall_product_count = total
+        for prod in self:
+            total = 0
+            for stock in prod.oncall_stock_ids:
+                total += stock.qty_to_deliver
+            prod.oncall_product_count = total
 
     # Redefine this method as we will decrease the available quantity by the quantity in "OnCall stock"
     @api.depends('stock_move_ids.product_qty', 'stock_move_ids.state', 'oncall_stock_ids')
