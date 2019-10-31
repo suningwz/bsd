@@ -48,18 +48,20 @@
             </xpath>
         </field>
     </record>
+    
+<!-- TODO: inventory valuation changed > stock.valuation.layer need to check how it works -->
 
-    <record model="ir.ui.view" id="view_add_owned_qty_inventory_valuation">
-        <field name="name">view_add_owned_qty_inventory_valuation</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='quantity']" position="after">
-                <field name="qty_owned_available"/>
-            </xpath>
-            <xpath expr="//field[@name='value']" position="after">
-                <field name="owned_stock_value" sum="Owned Stock Valuation" widget="monetary" options="{'currency_field': 'cost_currency_id'}"/>
-            </xpath>
-        </field>
-    </record>
+<!--    <record model="ir.ui.view" id="view_add_owned_qty_inventory_valuation">-->
+<!--        <field name="name">view_add_owned_qty_inventory_valuation</field>-->
+<!--        <field name="model">product.product</field>-->
+<!--        <field name="inherit_id" ref="stock_account.stock_valuation_layer_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='quantity']" position="after">-->
+<!--                <field name="qty_owned_available"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='value']" position="after">-->
+<!--                <field name="owned_stock_value" sum="Owned Stock Valuation" widget="monetary" options="{'currency_field': 'cost_currency_id'}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 </odoo>
