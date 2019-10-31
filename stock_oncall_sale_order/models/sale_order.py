@@ -17,7 +17,6 @@ class SaleOrder(models.Model):
             total += order.qty_to_deliver
         self.oncall_product_count = total
 
-    @api.multi
     def _action_confirm(self):
         for order in self:
             # Check if on-call route is used

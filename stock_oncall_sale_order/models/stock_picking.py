@@ -10,7 +10,6 @@ class StockPicking(models.Model):
     oncall_stock_count = fields.Integer(compute="_compute_oncall_stock_count", string="Products On-Call")
     is_from_oncall = fields.Boolean(compute="_compute_is_from_oncall", string="Is From OnCall", store=True)
 
-    @api.multi
     @api.depends('oncall_stock_ids')
     def _compute_is_from_oncall(self):
         for picking in self:

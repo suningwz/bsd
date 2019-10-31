@@ -94,6 +94,7 @@ Contributors
 ------------
 
 * Valentin Thirion <valentin.thirion@abakusitsolutions.eu>
+* Francois Wyaime <francois.wyaime@abakusitsolutions.eu>
 
 Maintainer
 -----------

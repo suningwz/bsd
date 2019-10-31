@@ -21,7 +21,7 @@
     'website': "http://www.abakusitsolutions.eu",
 
     'category': 'Sale',
-    'version': '12.0.1.0',
+    'version': '13.0.1.0',
 
     'depends': [
         'contacts',

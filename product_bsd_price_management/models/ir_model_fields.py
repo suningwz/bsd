@@ -9,7 +9,6 @@ _logger = logging.getLogger(__name__)
 class IrModelFields(models.Model):
     _inherit = 'ir.model.fields'
 
-    @api.multi
     def name_get(self):
         result = []
         for field in self:

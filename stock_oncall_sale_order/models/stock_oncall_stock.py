@@ -148,7 +148,6 @@ class StockOnCallStock(models.Model):
         move = self.env['stock.move'].create(vals)
         move._action_assign()
 
-    # TODO : create a method to see all pickings for one oncall
     def open_pickings(self):
         return {
             'name': _("Stock Picking"),

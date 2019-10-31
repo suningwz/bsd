@@ -3,11 +3,11 @@
     'name': "Stock On-Call Sales Order Management",
     'summary': """Manage On-Call from Sales Order  
     """,
-    'author': "Valentin Thirion, AbAKUS it-solutions SARL",
+    'author': "ABAKUS IT-SOLUTIONS",
     'website': "http://www.abakusitsolutions.eu",
 
     'category': 'Stock',
-    'version': '12.0.1.1',
+    'version': '13.0.1.0',
 
     'depends': [
         'stock',
