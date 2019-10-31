@@ -17,7 +17,7 @@
                             <field name="qty_box"/>
                             <field name="qty_pallet"/>
                             <field name="price_indu"/>
-                            <field name="create_date" widget="date" options="{'format': 'dd/MM/yyyy'}"/>
+                            <field name="create_date" widget="date" options="{'format': 'dd/MM/yyyy'}" optional="Hide"/>
                         </tree>
                     </field>
                 </page>
