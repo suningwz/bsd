@@ -17,3 +17,5 @@ class ProductTemplate(models.Model):
         for template in self:
             if template.sale_price_line_ids:
                 template.list_price = template.sale_price_line_ids[0].price_uv
+            else:
+                template.list_price = 0.0
