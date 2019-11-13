@@ -10,6 +10,9 @@
                     <group>
                         <group>
                             <field name="x_studio_purchase_tax"/>
+                            <field name="x_studio_nl_label"/>
+                            <field name="x_studio_en_label"/>
+                            <field name="x_studio_ge_label"/>
                             <field name="x_studio_sale_tax"/>
                             <field name="x_studio_supplier_name"/>
                             <field name="x_studio_sub_categ_id"/>

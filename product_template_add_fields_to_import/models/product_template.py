@@ -65,5 +65,8 @@ class ProductTemplate(models.Model):
     x_studio_uom_po_id = fields.Char("UoM Po")
     x_studio_commodity_code = fields.Char("Commodity code")
     x_studio_pv_euro = fields.Char("P.V. Euro")
+    x_studio_nl_label = fields.Char("NL Label")
+    x_studio_en_label = fields.Char("EN Label")
+    x_studio_ge_label = fields.Char("GE Label")
 
 
