@@ -79,7 +79,7 @@ class ProductTemplate(models.Model):
     def import_images(self):
         product_ids = self.search([('default_code', '!=', False)])
         base_url = r"/home/odoo-admin/odoo_addons/VRAC/"
-        for product_id in product_ids.filtered(lambda p: p.id == 29218):
+        for product_id in product_ids[0:1000]:
             if not product_id.image_1920:
                 ref_no_wildcard = ''.join(product_id.default_code.split('*'))
                 url_ref = base_url + ref_no_wildcard
