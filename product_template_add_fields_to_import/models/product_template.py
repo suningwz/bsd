@@ -83,8 +83,15 @@ class ProductTemplate(models.Model):
             if not product_id.image_1920:
                 ref_no_wildcard = ''.join(product_id.default_code.split('*'))
                 url_ref = base_url + ref_no_wildcard
-                if os.path.exists(url_ref):
-                    with open(url_ref, "rb") as image_file:
+                extension = False
+                if os.path.exists(url_ref + ".png"):
+                    extension = ".png"
+                elif os.path.exists(url_ref + ".jpg"):
+                    extension = ".jpg"
+                elif os.path.exists(url_ref + ".tif"):
+                    extension = ".tif"
+                if extension:
+                    with open(url_ref + extension, "rb") as image_file:
                         product_id.image_1920 = base64.b64encode(image_file.read())
 
         # for (dirpath, dirnames, filenames) in os.walk(base_url):
