@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, exceptions, _
 import logging
+import re, os
 _logger = logging.getLogger(__name__)
 
 
@@ -75,9 +76,17 @@ class ProductTemplate(models.Model):
     x_studio_tc_label = fields.Char("LIBELLE TCHEQUE")
 
     def import_images(self):
-        product_ids = model.search([('default_code', '!=', False)])
+        product_ids = self.search([('default_code', '!=', False)])
         base_url = "/home/odoo-admin/odoo_addons/vrac/"
         for product_id in product_ids[0:9]:
             if not product_id.image_1920:
-                url_ref = base_url + ''.join(product_id.default_code.split('*'))
-                raise Warning(url_ref)
+                ref_no_wildcard = ''.join(product_id.default_code.split('*'))
+                regex = ""
+                for c in ref_no_wildcard:
+                    regex += c
+                    regex += "\s*"
+                regex += "[.png|.jpg|.png.jpg|.PNG|.JPG|.PNG.JPG|.JPG.PNG|.jpg.png]{1}"
+                _logger.info("\n\nregex %s" % regex)
+                url_ref = base_url + regex
+
+
