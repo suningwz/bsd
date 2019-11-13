@@ -76,22 +76,35 @@ class ProductTemplate(models.Model):
     x_studio_tc_label = fields.Char("LIBELLE TCHEQUE")
 
     def import_images(self):
-        test_for_regex =  "237 9409925 GA.png.jpg"
-        product_ids = self.search([('default_code', '!=', False)])
-        base_url = "/home/odoo-admin/odoo_addons/vrac/"
-        for product_id in product_ids[0:9]:
-            if not product_id.image_1920:
-                ref_no_wildcard = ''.join(product_id.default_code.split('*'))
-                regex = ""
-                for c in ref_no_wildcard:
-                    regex += c
-                    regex += "\s*"
-                regex += "[.png|.jpg|.png.jpg|.PNG|.JPG|.PNG.JPG|.JPG.PNG|.jpg.png]{1}"
-                pattern = re.compile(regex)
-                for root, dirs, files in os.walk(base_url):
-                    for file in files:
-                        if pattern.match(file):
-                            _logger.info(file)
-                url_ref = base_url + regex
+        # test_for_regex =  "237 9409925 GA.png.jpg"
+        # product_ids = self.search([('default_code', '!=', False)])
+        base_url = r"/home/odoo-admin/odoo_addons/vrac/"
+        # for product_id in product_ids[0:9]:
+        #     if not product_id.image_1920:
+        #         ref_no_wildcard = ''.join(product_id.default_code.split('*'))
+        #         regex = ""
+        #         for c in ref_no_wildcard:
+        #             regex += c
+        #             regex += "\\s*"
+        #         regex += "[.png|.jpg|.png.jpg|.PNG|.JPG|.PNG.JPG|.JPG.PNG|.jpg.png]{1}"
+        #         for root, dirs, files in os.walk(base_url):
+        #             for file in files:
+        #                 if re.match(regex, file):
+        #                     _logger.info(file)
+        #         url_ref = base_url + regex
+        for (dirpath, dirnames, filenames) in os.walk(base_url):
+            for file in filenames[0:1]:
+                _logger.info("\nfilename %s\n" % file)
+                splitted = file.split('.')
+                extension = None
+                if splitted[-1] == "png":
+                    extension = "png"
+                elif splitted[-1] == "jpg":
+                    extension = "jpg"
+                new_file = ''.join(splitted[0].split(' '))
+                if extension and new_file:
+                    os.rename(base_url + file, base_url + new_file + extension)
+                else:
+                    raise Warning('No extension')
 
 
