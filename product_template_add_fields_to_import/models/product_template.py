@@ -74,4 +74,10 @@ class ProductTemplate(models.Model):
     x_studio_sale_account = fields.Char("COMPTE VENTE")
     x_studio_tc_label = fields.Char("LIBELLE TCHEQUE")
 
-
+    def import_images(self):
+        product_ids = model.search([('default_code', '!=', False)])
+        base_url = "/home/odoo-admin/odoo_addons/vrac/"
+        for product_id in product_ids[0:9]:
+            if not product_id.image_1920:
+                url_ref = base_url + ''.join(product_id.default_code.split('*'))
+                raise Warning(url_ref)
