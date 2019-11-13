@@ -70,5 +70,7 @@ class ProductTemplate(models.Model):
     x_studio_en_label = fields.Char("EN Label")
     x_studio_ge_label = fields.Char("GE Label")
     x_studio_c_douane = fields.Char("CDOUANE")
+    x_studio_purchase_account = fields.Char("COMPTE ACHAT")
+    x_studio_sale_account = fields.Char("COMPTE VENTE")
 
 

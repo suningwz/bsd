@@ -23,6 +23,8 @@
                             <field name="x_studio_packing_mode"/>
                             <field name="x_studio_gr"/>
                             <field name="x_studio_pa_eur"/>
+                            <field name="x_studio_purchase_account"/>
+                            <field name="x_studio_sale_account"/>
                             <field name="x_studio_internet"/>
                             <field name="x_studio_image"/>
                             <field name="x_studio_fost"/>
