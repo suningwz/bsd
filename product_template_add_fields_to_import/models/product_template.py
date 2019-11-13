@@ -87,8 +87,11 @@ class ProductTemplate(models.Model):
                     regex += c
                     regex += "\s*"
                 regex += "[.png|.jpg|.png.jpg|.PNG|.JPG|.PNG.JPG|.JPG.PNG|.jpg.png]{1}"
-                _logger.info("\n\nregex %s" % regex)
-                _logger.info("\n\nmatch %s" % re.search(regex, test_for_regex))
+                pattern = re.compile(regex)
+                for root, dirs, files in os.walk(base_url):
+                    for file in files:
+                        if pattern.match(file):
+                            _logger.info(file)
                 url_ref = base_url + regex
 
 
