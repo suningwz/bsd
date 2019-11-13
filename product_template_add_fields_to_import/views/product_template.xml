@@ -21,6 +21,7 @@
                             <field name="x_studio_catalog"/>
                             <field name="x_studio_supplier_country"/>
                             <field name="x_studio_packing_mode"/>
+                            <field name="x_studio_tc_label"/>
                             <field name="x_studio_gr"/>
                             <field name="x_studio_pa_eur"/>
                             <field name="x_studio_purchase_account"/>
