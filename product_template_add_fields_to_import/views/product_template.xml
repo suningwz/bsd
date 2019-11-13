@@ -12,6 +12,7 @@
                             <field name="x_studio_purchase_tax"/>
                             <field name="x_studio_nl_label"/>
                             <field name="x_studio_en_label"/>
+                            <field name="x_studio_c_douane"/>
                             <field name="x_studio_ge_label"/>
                             <field name="x_studio_sale_tax"/>
                             <field name="x_studio_supplier_name"/>
@@ -21,6 +22,7 @@
                             <field name="x_studio_supplier_country"/>
                             <field name="x_studio_packing_mode"/>
                             <field name="x_studio_gr"/>
+                            <field name="x_studio_pa_eur"/>
                             <field name="x_studio_internet"/>
                             <field name="x_studio_image"/>
                             <field name="x_studio_fost"/>

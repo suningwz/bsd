@@ -27,6 +27,7 @@ class ProductTemplate(models.Model):
     x_studio_uv_bsd = fields.Float("UV BSD/ETIQ")
     x_studio_pr_brut = fields.Float("PR BRUT/FAC")
     x_studio_percent_remise = fields.Float("% REMISE")
+    x_studio_pa_eur = fields.Float("PA EUR")
     x_studio_pa_usd = fields.Float("PA USD")
     x_studio_pa_shilling = fields.Float("PA SHILLING")
     x_studio_pa_sterling = fields.Float("PA STERLING")
@@ -68,5 +69,6 @@ class ProductTemplate(models.Model):
     x_studio_nl_label = fields.Char("NL Label")
     x_studio_en_label = fields.Char("EN Label")
     x_studio_ge_label = fields.Char("GE Label")
+    x_studio_c_douane = fields.Char("CDOUANE")
 
 
