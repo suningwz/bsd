@@ -76,6 +76,7 @@ class ProductTemplate(models.Model):
     x_studio_tc_label = fields.Char("LIBELLE TCHEQUE")
 
     def import_images(self):
+        test_for_regex =  "237 9409925 GA.png.jpg"
         product_ids = self.search([('default_code', '!=', False)])
         base_url = "/home/odoo-admin/odoo_addons/vrac/"
         for product_id in product_ids[0:9]:
@@ -87,6 +88,7 @@ class ProductTemplate(models.Model):
                     regex += "\s*"
                 regex += "[.png|.jpg|.png.jpg|.PNG|.JPG|.PNG.JPG|.JPG.PNG|.jpg.png]{1}"
                 _logger.info("\n\nregex %s" % regex)
+                _logger.info("\n\nmatch %s" % re.search(regex, test_for_regex))
                 url_ref = base_url + regex
 
 
