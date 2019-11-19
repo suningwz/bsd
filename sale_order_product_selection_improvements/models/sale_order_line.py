@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     def _get_categ_domain(self):
-        return [('parent_id.name', '=', "BSD")]
+        return [('parent_id', '=', self.env.ref('product.product_bsd_main_category').id)]
 
     categ_id = fields.Many2one('product.category', string="Category", domain=_get_categ_domain)
     qty_available = fields.Float("Quantity Available", related='product_id.product_tmpl_id.qty_available')
