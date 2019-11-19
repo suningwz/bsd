@@ -1,43 +1,47 @@
 <odoo>
-  <data>
-    <record id="view_picking_order_form" model ="ir.ui.view">
-        <field name="name">picking.order.form</field>
+    <data>
+        <record id="vpicktree_product_disponibility" model ="ir.ui.view">
+            <field name="name">vpicktree_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes" >
+                    <attribute name="decoration-danger">state not in ('cancel', 'done') and date_disponibility &lt; current_date</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="date_disponibility"/>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="view_picking_form_product_disponibility" model ="ir.ui.view">
+        <field name="name">view_picking_form_product_disponibility</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
-            <xpath expr="/form/sheet/group/group[2]/field[@name='scheduled_date']" position="after">
+            <xpath expr="/form/sheet/group/group[2]/field[@name='scheduled_date']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='scheduled_date']" position="after">
                 <field name="date_disponibility" attrs="{'readonly': ['|', ('id', '=', False), ('state', 'in', ('done', 'cancel'))], 'required': [('id', '!=', False)]}"/>
                 <field name="date_j" invisible="True"/>
                 <field name="date_j_1" invisible="True"/>
             </xpath>
-            <xpath expr="/form/sheet/group/group[2]/field[@name='scheduled_date']" position="replace">
-                <field name="scheduled_date" attrs="{'readonly': ['|', ('id', '=', False), ('state', 'in', ('done', 'cancel'))], 'required': [('id', '!=', False)]}" invisible="True"/>
-            </xpath>
 
-            <xpath expr="/form/sheet/group/group[1]/field[@name='picking_type_id']" position="after">
-                <field name="responsible_id" attrs="{'invisible': [ ( 'picking_type_code', '!=', 'outgoing' ) ] }"/>
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="responsible_id" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
             </xpath>
         </field>
     </record>
 
-    <record id="view_picking_order_tree" model ="ir.ui.view">
-        <field name="name">picking.order.tree</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.vpicktree" />
-        <field name="arch" type="xml">
-            <field name="scheduled_date" position="after">
-                <field name="date_disponibility"/>
-            </field>
 
-            <field name="scheduled_date" position="replace">
-                <field name="scheduled_date" invisible="True"/>
-            </field>
-
-            <tree position="attributes" >
-                <attribute name="decoration-danger">state not in ('cancel', 'done') and date_disponibility &lt; current_date</attribute>
-            </tree>
-        </field>
-    </record>
+        <!-- VT STOPPPED HERE 20191119 -->
 
     <record id="view_picking_internal_search_ihnerit" model="ir.ui.view">
         <field name="name">stock.picking.internal.search</field>
