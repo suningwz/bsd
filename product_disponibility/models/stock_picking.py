@@ -21,13 +21,6 @@ class Picking( models.Model ) :
         default   = "2050-01-01"
     )
 
-    responsible_id = fields.Many2one(
-        "hr.employee",
-        string           = _( "Résponsable" ),
-        translate        = True,
-        track_visibility = "onchange" 
-    )
-
     @api.model
     def create( self, vals ):
         if vals[ 'picking_type_id' ] == 5:

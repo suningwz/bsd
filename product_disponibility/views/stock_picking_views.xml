@@ -19,94 +19,102 @@
             </field>
         </record>
 
-    <record id="view_picking_form_product_disponibility" model ="ir.ui.view">
-        <field name="name">view_picking_form_product_disponibility</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form" />
-        <field name="arch" type="xml">
-            <xpath expr="/form/sheet/group/group[2]/field[@name='scheduled_date']" position="attributes">
-                <attribute name="invisible">True</attribute>
-            </xpath>
+        <record id="view_picking_form_product_disponibility" model ="ir.ui.view">
+            <field name="name">view_picking_form_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group[2]/field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
 
-            <xpath expr="//field[@name='scheduled_date']" position="after">
-                <field name="date_disponibility" attrs="{'readonly': ['|', ('id', '=', False), ('state', 'in', ('done', 'cancel'))], 'required': [('id', '!=', False)]}"/>
-                <field name="date_j" invisible="True"/>
-                <field name="date_j_1" invisible="True"/>
-            </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="after">
+                    <field name="date_disponibility" attrs="{'readonly': ['|', ('id', '=', False), ('state', 'in', ('done', 'cancel'))], 'required': [('id', '!=', False)]}"/>
+                    <field name="date_j" invisible="True"/>
+                    <field name="date_j_1" invisible="True"/>
+                </xpath>
+            </field>
+        </record>
 
-            <xpath expr="//field[@name='picking_type_id']" position="after">
-                <field name="responsible_id" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
-            </xpath>
-        </field>
-    </record>
+        <record id="view_picking_internal_search_product_disponibility" model="ir.ui.view">
+            <field name="name">view_picking_internal_search_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='late']" position="replace">
+                    <filter name="late" string="En retard" domain="[('date_disponibility','&lt;', time.strftime('%%Y-%%m-%%d %%H:%%M:%%S'))]" help="Pickings that are late on scheduled time"/>
+                </xpath>
+                <xpath expr="//filter[@name='expected_date']" position="replace">
+                    <filter string="Date de MàD" name="mad_date" domain="[]" context="{'group_by': 'date_disponibility'}"/>
+                </xpath>
+            </field>
+        </record>
 
+        <record id="stock_picking_cohort_product_disponibility" model="ir.ui.view">
+            <field name="name">stock_picking_cohort_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="priority" eval="3"/>
+            <field name="arch" type="xml">
+                <cohort string="Date de MàD" date_start="date_disponibility" date_stop="date_disponibility" interval="week" mode="churn"/>
+            </field>
+        </record>
 
-        <!-- VT STOPPPED HERE 20191119 -->
+        <record id="stock_picking_gantt_product_disponibility" model="ir.ui.view">
+            <field name="name">stock_picking_gantt_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <gantt
+                       date_start="date_disponibility"
+                       date_stop="date_disponibility"
+                       consolidation="number_of_days"
+                       consolidation_max =""
+                       string="Day(s)"
+                />
+                <!-- type="consolidate" fold_last_level="true" round_dnd_dates="true" -->
+            </field>
+        </record>
 
-    <record id="view_picking_internal_search_ihnerit" model="ir.ui.view">
-        <field name="name">stock.picking.internal.search</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_internal_search" />
-        <field name="arch" type="xml">
-            <filter name="late" position="replace">
-                <filter name="late" string="En retard" domain="[('date_disponibility','&lt;', time.strftime('%%Y-%%m-%%d %%H:%%M:%%S'))]" help="Pickings that are late on scheduled time"/>
-            </filter>
-            <xpath expr="/search/group/filter[@name='expected_date']" position="replace">
-                <filter string="Date de MàD" name="mad_date" domain="[]" context="{'group_by': 'date_disponibility'}"/>
-            </xpath>
-        </field>
-    </record>
+        <record model="ir.ui.view" id="stock_picking_calendar_product_disponibility">
+            <field name="name">stock_picking_calendar_product_disponibility</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.stock_picking_calendar" />
+            <field name="arch" type="xml">
+                <calendar position="attributes" >
+                    <attribute name="date_start">date_disponibility</attribute>
+                </calendar>
+            </field>
+        </record>
 
-    <record id="stock_picking_cohort" model="ir.ui.view">
-        <field name="name">stock.picking.cohort</field>
-        <field name="model">stock.picking</field>
-        <field name="priority" eval="3"/>
-        <field name="arch" type="xml">
-            <cohort string="Date de MàD" date_start="date_disponibility" date_stop="date_disponibility" interval="week" mode="churn"/>
-        </field>
-    </record>
+<!--        <record id="stock.action_picking_tree_all" model="ir.actions.act_window">
+            <field name="view_mode">tree,kanban,form,calendar,cohort,gantt</field>
+        </record>-->
 
-    <record id="stock_picking_view" model="ir.ui.view">
-        <field name="name">stock.picking.gantt</field>
-        <field name="model">stock.picking</field>
-        <field name="arch" type="xml">
-            <gantt type="consolidate"
-                   date_start="date_disponibility"
-                   date_stop="date_disponibility"
-                   fold_last_level="true"
-                   round_dnd_dates="true"
-                   consolidation="number_of_days"
-                   consolidation_max =""
-                   string="Day(s)"
-            />
-        </field>
-    </record>
+        <!--<record id="action_picking_tree_all" model="ir.actions.act_window">
+            <field name="name">Transfers</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar,cohort,gantt</field>
+            <field name="domain"></field>
+            <field name="context">{'contact_display': 'partner_address', 'default_company_id': allowed_company_ids[0]}</field>
+            <field name="search_view_id" ref="view_picking_internal_search_product_disponibility"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new transfer
+                </p><p>
+                    Transfers allow you to move products from one location to another.
+                </p>
+            </field>
+        </record>-->
 
-    <record id="stock.action_picking_tree" model="ir.actions.act_window">
-        <field name="view_mode">tree,kanban,form,calendar,cohort,gantt</field>
-    </record>
+        <record id="action_picking_day_plus_one" model="ir.actions.act_window">
+            <field name="name">Préparations J+1</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,kanban,form,calendar,cohort,gantt</field>
+            <field name="domain">[ '&amp;', ( 'picking_type_code', '=', 'outgoing' ), '&amp;', ( 'date_j_1', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') ), ( 'date_j', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) ]</field>
+        </record>
 
-    <record model="ir.ui.view" id="stock_picking_calendar_inherit">
-        <field name="name">stock.picking.calendar</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.stock_picking_calendar" />
-        <field name="arch" type="xml">
-            <calendar position="attributes" >
-                <attribute name="date_start">date_disponibility</attribute>
-            </calendar>
-        </field>
-    </record>
-
-    <record id="action_j_moins_1_report" model="ir.actions.act_window">
-        <field name="name">Préparations J+1</field>
-        <field name="res_model">stock.picking</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree</field>
-        <field name="domain">[ '&amp;', ( 'picking_type_code', '=', 'outgoing' ), '&amp;', ( 'date_j_1', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') ), ( 'date_j', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')) ]</field>
-    </record>
-
-    <menuitem id="j_moins_1_report_menu" name="Liste de préparation J+1" parent="stock.menu_stock_root" action="action_j_moins_1_report"/>
+        <menuitem id="menu_picking_day_plus_one" name="Liste de préparation J+1" parent="stock.menu_stock_root" action="action_picking_day_plus_one"/>
 
   </data>
 </odoo>
