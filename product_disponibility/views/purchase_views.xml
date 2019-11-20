@@ -30,7 +30,7 @@
                         icon="fa-refresh"
                         string="Mettre à jour"
                         help="Mise à jour des lignes et des produits"
-                        confirm="Voulez vous mettre-à-jour tous les documents associées à cet Bon de vente? "
+                        confirm="Voulez vous mettre-à-jour tous les documents associés à ce document d'achat ? "
                     />
                 </xpath>
 
