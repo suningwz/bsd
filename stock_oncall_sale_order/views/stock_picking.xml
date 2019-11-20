@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_add_stock_oncall_stock_form_view">
+        <field name="stock_picking_add_stock_oncall_stock_form_view"/>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="view_oncalls" icon="fa-building" attrs="{'invisible': [('oncall_stock_count', '=', 0)]}">
+                    <field string="Products On-Call" name="oncall_stock_count" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='extra']/group/group[1]" position="inside">
+                <field name="is_from_oncall" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="stock_picking_add_search_is_oncall_search_view">
+        <field name="stock_picking_add_search_is_oncall_search_view"/>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//separator[1]" position="after">
+                <filter name="is_from_oncall" string="From OnCall" domain="[('is_from_oncall', '=', True)]" help="Pickings that are linked to OnCall Orders"/>
+                <filter name="is_not_from_oncall" string="Not From OnCall" domain="[('is_from_oncall', '=', False)]" help="Pickings that are not linked to OnCall Orders"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

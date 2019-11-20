@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_contact_add_method_field_in_so">
+        <field name="name">sale_contact_add_method_field_in_so</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="method_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attrubute name="string">Who</attrubute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="create_uid"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

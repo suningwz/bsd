@@ -21,27 +21,22 @@ class Picking( models.Model ) :
         default   = "2050-01-01"
     )
 
-    responsible_id = fields.Many2one(
-        "hr.employee",
-        string           = _( "Résponsable" ),
-        translate        = True,
-        track_visibility = "onchange" 
-    )
-
     @api.model
     def create( self, vals ):
         if vals[ 'picking_type_id' ] == 5:
             SaleOrder  = self.env[ 'sale.order' ]
+            # Test if we have origin in the values given, can not be set if the picking is created from another method
+            if 'origin' in vals:
      
-            order_id = SaleOrder.search( [ ( 'name', '=', vals[ 'origin' ] ) ] )
+                order_id = SaleOrder.search( [ ( 'name', '=', vals[ 'origin' ] ) ] )
 
-            vals[ 'date_disponibility' ] = order_id.date_disponibility
+                vals[ 'date_disponibility' ] = order_id.date_disponibility
 
-            vals[ 'date_j_1' ] = datetime.datetime.combine( 
-                ( order_id.date_disponibility - datetime.timedelta( days = 2 ) ) , 
-                datetime.time( 22, 59, 00 ) )
+                vals[ 'date_j_1' ] = datetime.datetime.combine(
+                    ( order_id.date_disponibility - datetime.timedelta( days = 2 ) ) ,
+                    datetime.time( 22, 59, 00 ) )
 
-            vals[ 'date_j' ] = datetime.datetime.combine( 
-                order_id.date_disponibility, datetime.time( 22, 59, 00 ) )
+                vals[ 'date_j' ] = datetime.datetime.combine(
+                    order_id.date_disponibility, datetime.time( 22, 59, 00 ) )
 
         return super( Picking, self ).create( vals )

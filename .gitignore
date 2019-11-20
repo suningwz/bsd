@@ -1,0 +1,8 @@
+.idea/
+.idea/bsd.iml
+*.pyc
+stock_oncall_sale_order/models/__pycache__/__init__.cpython-36.pyc
+stock_oncall_sale_order/models/__pycache__/res_partner.cpython-36.pyc
+*.cpython-36.pyc
+*.pyc
+stock_oncall_sale_order/models/__pycache__/res_partner.cpython-36.pyc

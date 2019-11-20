@@ -1,72 +1,58 @@
 <odoo>
     <data>
-        <record id="view_order_form" model ="ir.ui.view">
-        <field name="name">sale.order.form</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="arch" type="xml">
-            <field name="partner_shipping_id" position="after">
-                <field name="date_disponibility" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+        <!-- Quotation -->
+        <record id="view_quotation_tree_product_disponibility" model ="ir.ui.view">
+            <field name="name">view_quotation_tree_product_disponibility</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='commitment_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='expected_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='create_date']" position="after">
+                    <field name="date_disponibility"/>
+                </xpath>
             </field>
+        </record>
 
-            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
-                <field name="date_disponibility" readonly="False"/>
-            </xpath>
+        <!-- Sales Order -->
+        <record id="view_order_form_product_disponibility" model="ir.ui.view">
+            <field name="name">view_order_form_product_disponibility</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="date_disponibility" attrs="{'readonly': [('state', 'in', ['sale','done','cancel'])]}"/>
+                </xpath>
 
-            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="before">
-                <field name="product_image" widget="image" class="oe_avatar"/>
-            </xpath>
-
-            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/group/group[2]/div" position="after">
-                <label for="date_disponibility" string="Date de mise à disposition Estimée"/>
-                <div>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                     <field name="date_disponibility" readonly="False"/>
-                </div>
-
-                <div>
-                    <field name="product_image" widget="image" />
-                </div>
-            </xpath>
-
-        </field>
+                </xpath>
+           </field>
         </record>
 
-        <record id="view_order_tree" model ="ir.ui.view">
-        <field name="name">sale.order.tree</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
-        <field name="arch" type="xml">
-            <field name="commitment_date" position="replace">
-                <field name="commitment_date" invisible="1"/>
-            </field>
+        <record id="view_order_tree_product_disponibility" model ="ir.ui.view">
+            <field name="name">view_order_tree_product_disponibility</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='commitment_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
 
-            <field name="expected_date" position="replace">
-                <field name="expected_date" invisible="1"/>
-            </field>
+                <xpath expr="//field[@name='expected_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
 
-            <field name="confirmation_date" position="after">
-                <field name="date_disponibility"/>
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="date_disponibility"/>
+                </xpath>
             </field>
-        </field>
-        </record>
-
-        <record id="view_quotation_tree" model ="ir.ui.view">
-        <field name="name">sale.quot.tree</field>
-        <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="arch" type="xml">
-            <field name="commitment_date" position="replace">
-                <field name="commitment_date" invisible="1"/>
-            </field>
-
-            <field name="expected_date" position="replace">
-                <field name="expected_date" invisible="1"/>
-            </field>
-
-            <field name="date_order" position="after">
-                <field name="date_disponibility"/>
-            </field>
-        </field>
         </record>
     </data>
 </odoo>

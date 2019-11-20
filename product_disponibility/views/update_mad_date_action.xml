@@ -1,5 +1,5 @@
 <odoo>
-    <record id="update_mad_date_search" model="ir.ui.view">
+    <record id="update_mad_date_search_product_disponibility" model="ir.ui.view">
         <field name="name">sale.order.search</field>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
@@ -20,7 +20,7 @@
         <field name="view_mode">form,tree</field>
         <field name="view_id" ref="sale.view_order_tree"/>
         <field name="context">{ 'search_default_produit': 1, 'search_default_team_id': 1, 'search_default_current_year': 1}</field>
-        <field name="search_view_id" ref="update_mad_date_search"/>
+        <field name="search_view_id" ref="update_mad_date_search_product_disponibility"/>
     </record>
 
     <record id="update_mad_related_docs_action" model="ir.actions.server">
@@ -28,7 +28,6 @@
         <field name="model_id" ref="model_sale_order"/>
         <field name="binding_model_id" ref="model_sale_order" />
         <field name="state">code</field>
-        <field name="condition">True</field>
         <field name="code">model.update_documents(env.context)</field>
     </record>
 </odoo>

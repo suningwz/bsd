@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="open_sale_method">
+        <field name="name">Sale Methods</field>
+        <field name="res_model">sale.order.method</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem parent="sale.menu_sales_config" id="menu_sale_method_config" name="Sale Methods" action="open_sale_method"/>
+</odoo>

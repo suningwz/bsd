@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="stock_oncall_stock_form" model="ir.ui.view">
+        <field name="name">stock_oncall_stock_form</field>
+        <field name="model">stock.oncall.stock</field>
+        <field name="arch" type="xml">
+            <form string="On-Call Stock" create="false">
+                <sheet>
+                    <group>
+                        <group id="sale_id">
+                            <field name="partner_id" readonly="1"/>
+                            <field name="sale_order_id" />
+                            <field name="sale_order_line_id" readonly="1"/>
+                            <field name="product_id" />
+                        </group>
+                        <group id="delivery">
+                            <field name="qty_ordered" readonly="1" />
+                            <field name="qty_to_deliver" readonly="1"/>
+                            <field name="qty_to_deliver_now" />
+                            <button name="deliver_products" class="oe_highlight" string="Deliver" type="object"/>
+                            <field name="qty_done" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_oncall_stock_tree" model="ir.ui.view">
+        <field name="name">stock_oncall_stock_tree</field>
+        <field name="model">stock.oncall.stock</field>
+        <field name="arch" type="xml">
+            <tree editable="top" create="false">
+                <field name="partner_id" />
+                <field name="sale_order_id" />
+                <field name="product_id" />
+                <field name="qty_ordered" readonly="1" />
+                <field name="qty_to_deliver" readonly="1"/>
+                <field name="qty_to_deliver_now" />
+                <button name="deliver_products" class="oe_highlight" string="Deliver" type="object"/>
+                <button name="open_pickings" class="oe_highlight" string="View Pickings" type="object"/>
+                <field name="qty_done" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_deliver_products_batch">
+        <field name="name">Deliver the selected product(s)</field>
+        <field name="model_id" ref="stock_oncall_sale_order.model_stock_oncall_stock"/>
+        <field name="state">code</field>
+        <field name="condition">True</field>
+        <field name="code">
+            if records:
+                action = records.deliver_products()
+        </field>
+        <field name="binding_model_id" ref="stock_oncall_sale_order.model_stock_oncall_stock"/>
+        <field name="binding_type">action</field>
+    </record>
+</odoo>
