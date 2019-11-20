@@ -14,12 +14,10 @@
         'stock',
     ],
     'data': [
-        # 'security/ir.model.access.csv',
         'views/product_template.xml',
         'views/sale_views.xml',
         'views/purchase_views.xml',
         'views/stock_picking_views.xml',
         'views/update_mad_date_action.xml'
-        #'views/scheduler.xml',
     ],
 }
