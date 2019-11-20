@@ -61,29 +61,30 @@ class PurchaseOrder(models.Model):
         self.date_disponibility = str(self.reception_date + datetime.timedelta(days=8))
 
     def update_related_documents(self):
-        SaleOrderLine = self.env['sale.order.line']
+        for purchase in self:
+            SaleOrderLine = self.env['sale.order.line']
 
-        if len(self.order_line) < 1:
-            raise ValidationError(_('Veuillez tout d\'abord créer et enregistrer des lignes de commande.'))
+            if len(purchase.order_line) < 1:
+                raise ValidationError(_('Veuillez tout d\'abord créer et enregistrer des lignes de commande.'))
 
-        #product_ids = set()
-        for line in self.order_line:
-            line.date_disponibility = self.date_disponibility
-            line.product_id.date_disponibility = self.date_disponibility
-            #product_ids.add( line.product_id.id )
+            #product_ids = set()
+            for line in purchase.order_line:
+                line.date_disponibility = purchase.date_disponibility
+                line.product_id.date_disponibility = purchase.date_disponibility
+                #product_ids.add( line.product_id.id )
 
-        # TODO : check if the following (that was commented) should be done or not
-        """order_line_ids = SaleOrderLine.search( 
-            [ ( 'product_id', 'in', list( product_ids ) ) ] )
-
-        if order_line_ids:
-            sale_order_ids = set()
-            for line in order_line_ids:
-                line.date_disponibility = self.date_disponibility
-                sale_order_ids.add( line.order_id )
-            
-            for order in sale_order_ids:
-                order.update_disponibility_date()"""
+            # TODO : check if the following (that was commented) should be done or not
+            """order_line_ids = SaleOrderLine.search( 
+                [ ( 'product_id', 'in', list( product_ids ) ) ] )
+    
+            if order_line_ids:
+                sale_order_ids = set()
+                for line in order_line_ids:
+                    line.date_disponibility = self.date_disponibility
+                    sale_order_ids.add( line.order_id )
+                
+                for order in sale_order_ids:
+                    order.update_disponibility_date()"""
 
     # TODO : make this method work
     def action_view_sales_po(self):

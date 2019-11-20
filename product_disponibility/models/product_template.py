@@ -6,20 +6,26 @@ import datetime
 from datetime import timedelta
 from odoo.tools.float_utils import float_round
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     date_disponibility = fields.Date(string=_('Date de mise à disposition'), default="2050-01-01", track_visibility="onchange")
 
     def update_order_lines(self):
-        order_line_ids = self.env['sale.order.line'].search([('product_id', '=', self.id)])
+        for product in self:
+            _logger.debug("Product : %s", product.name)
+            order_line_ids = self.env['sale.order.line'].search([('product_id', '=', product.id)])
+            _logger.debug("Product sale lines: %s", order_line_ids)
+            if len(order_line_ids) == 0:
+                raise ValidationError(_('Ce produit n\'a aucune ligne de vente confirmée associée.'))
 
-        if not order_line_ids:
-            raise ValidationError(_('Ce produit n\'a aucune ligne de vente associée.'))
-
-        for line in order_line_ids:
-            line.date_disponibility = self.date_disponibility
-            line.order_id.update_disponibility_date()
+            for line in order_line_ids:
+                line.date_disponibility = product.date_disponibility
+                line.order_id.update_disponibility_date()
 
     def action_view_sales(self):
         action = self.env.ref('product_disponibility.update_mad_date_action').read()[0]
