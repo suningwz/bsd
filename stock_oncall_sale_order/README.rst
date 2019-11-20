@@ -83,6 +83,8 @@ Use cases :
 - faire une disctinction du montant dans la valorisation de l'inventaire => OK dans la vue inventory_valuation
 - faire fonctionner la reord rule si la qty owned est < que le min (donc prendre en compte les oncall) -> OK
 
+- enlever la colone des quantités sur stock
+- affichger le bouton en 1er
 Installation notes
 ==================
 
