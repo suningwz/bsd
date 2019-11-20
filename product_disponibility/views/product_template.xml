@@ -30,7 +30,7 @@
                     <button 
                         type="object" 
                         name="update_order_lines" 
-                        class="oe_stat_button"
+                        class="oe_stat_button oe_highlight"
                         icon="fa-refresh"
                         invisible="True"
                         confirm="Voulez vous mettre-à-jour tous les lignes de vente associées à ce produit?"
