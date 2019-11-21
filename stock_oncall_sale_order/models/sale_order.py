@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     oncall_stock_ids = fields.One2many('stock.oncall.stock', 'sale_order_id', string="On-Call Stock")
     oncall_product_count = fields.Integer(compute='_compute_oncall_product_count', string='# Products On-Call')
 
-
+    @api.depends('oncall_stock_ids')
     def _compute_oncall_product_count(self):
         for order in self:
             total = 0

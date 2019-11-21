@@ -12,14 +12,16 @@ class ProcurementGroup(models.Model):
     _inherit = ['procurement.group']
 
     @api.model
-    def run(self, product_id, product_qty, product_uom, location_id, name, origin, values):
-        if "route_ids" in values:
-            route = values['route_ids']
-            if not route or not route.is_oncall_route:
-                return super(ProcurementGroup, self).run(product_id, product_qty, product_uom, location_id, name, origin, values)
+    def run(self, procurements):
+        for procurement in procurements:
+            values = procurement.values
+            if "route_ids" in values:
+                route = values['route_ids']
+                if not route or not route.is_oncall_route:
+                    super(ProcurementGroup, self).run(procurements)
             else:
-                return True
-        return super(ProcurementGroup, self).run(product_id, product_qty, product_uom, location_id, name, origin, values)
+                super(ProcurementGroup, self).run(procurements)
+        return True
 
     #Same as odoo 12.0 code, take qty_owned_available  instead of virtual available
     @api.model
@@ -102,10 +104,10 @@ class ProcurementGroup(models.Model):
                                                                                     **group['procurement_values'])
                                     try:
                                         with self._cr.savepoint():
-                                            self.env['procurement.group'].run(orderpoint.product_id, qty_rounded,
+                                            self.env['procurement.group'].run([self.env['procurement.group'].Procurement(orderpoint.product_id, qty_rounded,
                                                                               orderpoint.product_uom,
                                                                               orderpoint.location_id,
-                                                                              orderpoint.name, orderpoint.name, values)
+                                                                              orderpoint.name, orderpoint.name, values)])
                                     except UserError as error:
                                         self.env['stock.rule']._log_next_activity(orderpoint.product_id, error.name)
                                     self._procurement_from_orderpoint_post_process([orderpoint.id])
